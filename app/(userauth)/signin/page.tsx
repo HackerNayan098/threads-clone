@@ -20,7 +20,8 @@ const page = () => {
     console.log(name, value);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
     try {
       const response = await axios.post("/api/login", user);
       console.log("Signup success", response.data);
@@ -60,7 +61,7 @@ const page = () => {
             }
           />
           <Button
-            onClick={handleSubmit}
+            onClick={(e) => handleSubmit(e)}
             btnTitle={"SignIn"}
             cssClass={"w-full bg-blue-500 text-white py-2.5 rounded"}
           />

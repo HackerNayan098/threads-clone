@@ -1,7 +1,7 @@
 interface buttonProps {
   btnTitle: string;
   cssClass: string;
-  onClick?: () => void;
+  onClick?: (e: any) => void;
 }
 
 const Button = ({ btnTitle, cssClass, onClick }: buttonProps) => {

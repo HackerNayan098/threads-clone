@@ -24,7 +24,8 @@ export default function signupPage() {
     console.log(name, value);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e: any) => {
+    e.preventDefault();
     try {
       const response = await axios.post("/api/register", user);
       console.log("Signup success", response.data);
@@ -84,7 +85,7 @@ export default function signupPage() {
             }
           />
           <Button
-            onClick={handleSubmit}
+            onClick={(e) => handleSubmit(e)}
             btnTitle={"Register"}
             cssClass={" w-full bg-blue-500 text-white py-2.5 rounded"}
           />
