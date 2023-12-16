@@ -1,7 +1,5 @@
+import Leftbar from "@/components/shared/Leftbar";
 import "./globals.css";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Thread Clone",
@@ -15,10 +13,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={`${inter.className} w-full h-screen lg:p-4 px-2 bg-[#f5f5f5]`}
-      >
-        {children}
+      <body className={` w-full h-screen lg:p-4 p-2 bg-[#f5f5f5] flex`}>
+        <div>
+          <Leftbar />
+        </div>
+        <div>{children}</div>
       </body>
     </html>
   );
