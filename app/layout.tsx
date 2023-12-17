@@ -1,5 +1,7 @@
-import Leftbar from "@/components/shared/Leftbar";
+import Leftbar from "@/components/Shared/Leftbar";
 import "./globals.css";
+import Topbar from "@/components/Shared/Topbar";
+import Rightbar from "@/components/Shared/Rightbar";
 
 export const metadata = {
   title: "Thread Clone",
@@ -13,11 +15,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` w-full h-screen lg:p-4 p-2 bg-[#f5f5f5] flex`}>
-        <div>
-          <Leftbar />
+      <body className={` w-full h-screen p-4 bg-[#f5f5f5]`}>
+        <div className="main-container h-full grid grid-cols-5 gap-4">
+          <section className="col-span-1">
+            <Leftbar />
+          </section>
+          <section className="col-start-2 col-span-3">{children}</section>
+          <section className="col-span-1">
+            <Rightbar />
+          </section>
         </div>
-        <div>{children}</div>
       </body>
     </html>
   );

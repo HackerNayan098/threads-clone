@@ -63,7 +63,7 @@ const Leftbar = () => {
         {navOpen ? <IoClose /> : <FaBars />}
       </div>
       <nav
-        className={`lg:w-[275px] h-full lg:flex flex-col items-center justify-between p-4 border-2 hidden ${
+        className={`lg:w-[300px] h-full lg:flex flex-col items-center justify-between border-2 hidden ${
           navOpen ? "nav-active" : ""
         }`}
       >
@@ -83,7 +83,7 @@ const Leftbar = () => {
             );
           })}
         </div>
-        <div className="signout flex gap-2 items-center">
+        <div className="signout flex gap-2 items-center p-4">
           <MdOutlineLogout />
           <span>Logout</span>
         </div>
