@@ -1,3 +1,4 @@
+"use client";
 import Button from "@/components/Button";
 import React from "react";
 import profileImg from "@/images/profile-img.jpg";
