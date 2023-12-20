@@ -23,7 +23,7 @@ const page = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/login", user);
+      const response = await axios.post("/api/user/login", user);
       console.log("Signup success", response.data);
       router.push("/");
     } catch (error: any) {

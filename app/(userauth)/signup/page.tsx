@@ -27,7 +27,7 @@ export default function signupPage() {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/api/register", user);
+      const response = await axios.post("/api/user/register", user);
       console.log("Signup success", response.data);
       router.push("/");
     } catch (error: any) {

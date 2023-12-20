@@ -5,7 +5,7 @@ import profileImg from "@/images/profile-img.jpg";
 
 const page = () => {
   return (
-    <div>
+    <div className="lg:p-8 p-4">
       <section className="border-b-[3px]">
         <div className="flex items-center justify-between p-4">
           <div className="flex items-center justify-center gap-4">

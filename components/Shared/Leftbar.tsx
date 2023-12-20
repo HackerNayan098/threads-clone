@@ -57,13 +57,13 @@ const Leftbar = () => {
   return (
     <>
       <div
-        className="nav-icon lg:hidden w-10 h-10 flex justify-center items-center bg-[#f5f5f5] text-[1.5rem] text-black border-black border-2 rounded-[8px] absolute z-[2] "
+        className="nav-icon lg:hidden w-10 h-10 flex justify-center items-center bg-[#f5f5f5] text-[1.5rem]  border-black border-2 rounded-[8px] absolute z-[2] "
         onClick={() => setNavOpen(!navOpen)}
       >
         {navOpen ? <IoClose /> : <FaBars />}
       </div>
       <nav
-        className={`lg:w-[300px] h-full lg:flex flex-col items-center justify-between border-2 hidden ${
+        className={` h-full lg:flex flex-col items-center justify-between bg-[#1d1d1d] hidden ${
           navOpen ? "nav-active" : ""
         }`}
       >
@@ -75,6 +75,11 @@ const Leftbar = () => {
                 className={`flex items-center gap-2 cursor-pointer text-[1.1rem] ${
                   pathname === item.redirect ? "activated-nav" : ""
                 }`}
+                onClick={() => {
+                  if (window.innerWidth < 1024) {
+                    setNavOpen(!navOpen);
+                  }
+                }}
               >
                 <Link href={item.redirect} className="flex items-center gap-2">
                   {item.icon} {item.title}

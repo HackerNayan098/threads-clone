@@ -5,15 +5,15 @@ import { GoPaperAirplane } from "react-icons/go";
 
 const page = () => {
   return (
-    <div>
+    <div className="lg:p-8 p-4">
       <h1 className="font-bold text-3xl">Create Thread</h1>
-      <section className="border-2 p-4 m-2">
+      <section className="border-2 p-4 m-2 bg-[#1d1d1d]">
         <textarea
-          className="w-full outline-0 p-2 rounded"
+          className="w-full outline-0 p-2 rounded bg-[#1d1d1d] border-[1px] border-white"
           rows={10}
           placeholder="What's in your mind ?"
         ></textarea>
-        <div className="w-full p-4 bg-white rounded p-4 flex items-center justify-between">
+        <div className="w-full rounded p-4 flex items-center justify-between border-[1px] border-white">
           <div className="flex items-center gap-4 text-[#9ca3af]">
             <MdOutlinePhoto size={30} />
             <IoVideocamOutline size={32} />

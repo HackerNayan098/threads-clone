@@ -1,7 +1,7 @@
 import React from "react";
 
 const page = () => {
-  return <div>activity pages</div>;
+  return <div className="lg:p-8 p-4">activity pages</div>;
 };
 
 export default page;
