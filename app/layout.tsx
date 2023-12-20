@@ -1,6 +1,5 @@
-import Leftbar from "@/components/Shared/Leftbar";
 import "./globals.css";
-import Topbar from "@/components/Shared/Topbar";
+import Leftbar from "@/components/Shared/Leftbar";
 import Rightbar from "@/components/Shared/Rightbar";
 
 export const metadata = {
@@ -20,10 +19,10 @@ export default function RootLayout({
           <section className="lg:col-span-1">
             <Leftbar />
           </section>
-          <section className="lg:col-start-2 lg:col-span-3 lg:py-2 py-6">
+          <section className="lg:col-start-2 lg:col-span-3 lg:py-2 py-8">
             {children}
           </section>
-          <section className="col-span-1">
+          <section className="col-span-1 lg:py-2 py-8">
             <Rightbar />
           </section>
         </div>

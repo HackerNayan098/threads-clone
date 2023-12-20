@@ -21,6 +21,12 @@ const UserSchema = new mongoose.Schema({
     type: String,
     require: [true, "please provide a password"],
   },
+  threads: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Thread",
+    },
+  ],
 });
 
 const User = mongoose.models.users || mongoose.model("users", UserSchema);

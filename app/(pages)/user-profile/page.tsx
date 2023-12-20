@@ -30,7 +30,7 @@ const page = () => {
           <p>javascript dev</p>
         </div>
       </section>
-      <section className="grid grid-cols-3 p-4 text-center">
+      <section className="grid grid-cols-3 p-4 text-center text-lg bg-[#1d1d1d] mt-2">
         <div className="col-span-1">Threads</div>
         <div className="col-span-1">Replies</div>
         <div className="col-span-1">Tagged</div>

@@ -57,7 +57,7 @@ const Leftbar = () => {
   return (
     <>
       <div
-        className="nav-icon lg:hidden w-10 h-10 flex justify-center items-center bg-[#f5f5f5] text-[1.5rem]  border-black border-2 rounded-[8px] absolute z-[2] "
+        className="nav-icon lg:hidden w-10 h-10 flex justify-center items-center bg-[#f5f5f5] text-blue-500 text-[1.5rem] m-2 border-black border-2 rounded-[8px] absolute z-[2] "
         onClick={() => setNavOpen(!navOpen)}
       >
         {navOpen ? <IoClose /> : <FaBars />}
