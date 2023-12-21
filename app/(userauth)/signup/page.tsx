@@ -83,6 +83,7 @@ export default function signupPage() {
                 />
               )
             }
+            elemClass={"text-black absolute right-[20px] top-[27px]"}
           />
           <Button
             onClick={(e) => handleSubmit(e)}

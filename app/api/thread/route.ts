@@ -25,9 +25,11 @@ export async function POST(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
+  // const router = useRouter();
   try {
     const reqId = await req.json();
     const { id } = reqId;
+    // const { id } = router.query;
     await Thread.findByIdAndDelete(id);
     return NextResponse.json({
       message: "Post Deleted Successfully !",

@@ -59,6 +59,7 @@ const page = () => {
                 />
               )
             }
+            elemClass={"text-black absolute right-[20px] top-[27px]"}
           />
           <Button
             onClick={(e) => handleSubmit(e)}
@@ -68,10 +69,10 @@ const page = () => {
           {/* Horizontal line */}
           <div className="bg-black h-[1px] w-full my-2"></div>
 
-          <div className="w-full bg-white border-2 p-[0.7rem] my-4 rounded-md outline-none text-md shadow-[0px 1px 15px rgba(0, 0, 0, 0.2)] ">
+          <div className="w-full bg-white border-2 p-[0.7rem] my-4 rounded-md outline-none text-black text-md shadow-[0px 1px 15px rgba(0, 0, 0, 0.2)] ">
             SignIn With Google
           </div>
-          <div className="w-full bg-white border-2 p-[0.7rem] my-4 rounded-md outline-none text-md shadow-[0px 1px 15px rgba(0, 0, 0, 0.2)] ">
+          <div className="w-full bg-white border-2 p-[0.7rem] my-4 rounded-md outline-none text-black text-md shadow-[0px 1px 15px rgba(0, 0, 0, 0.2)] ">
             SignIn With Github
           </div>
           <p className="mt-4">Don't have an account ?</p>
