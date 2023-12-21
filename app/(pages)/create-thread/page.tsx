@@ -20,7 +20,7 @@ const page = () => {
   const savePost = async (e: any) => {
     e.preventDefault();
     try {
-      const saveThread = await axios.post("api/thread/addThread", thread);
+      const saveThread = await axios.post("/api/thread", thread);
       console.log(saveThread);
       setThread({
         text: "",

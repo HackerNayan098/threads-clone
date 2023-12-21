@@ -23,3 +23,22 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ err: err.message }, { status: 500 });
   }
 }
+
+export async function DELETE(req: NextRequest) {
+  try {
+    const reqId = await req.json();
+    const { id } = reqId;
+    await Thread.findByIdAndDelete(id);
+    return NextResponse.json({
+      message: "Post Deleted Successfully !",
+      status: 200,
+    });
+  } catch (err: any) {
+    console.log(err);
+
+    return NextResponse.json({
+      message: "Internal Error",
+      status: 500,
+    });
+  }
+}
