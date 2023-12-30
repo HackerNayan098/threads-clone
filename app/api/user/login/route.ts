@@ -35,13 +35,12 @@ export async function POST(req: NextRequest) {
       { expiresIn: "24h" }
     );
 
-    const response = NextResponse.json({
+    return NextResponse.json({
       message: "Login Successfully !",
       success: true,
       token,
+      user,
     });
-    response.cookies.set("token", token, { httpOnly: true });
-    return response;
   } catch (err: any) {
     return NextResponse.json({ err: err.message }, { status: 500 });
   }

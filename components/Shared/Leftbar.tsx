@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FaBars, FaRegUser } from "react-icons/fa6";
 import { IoClose, IoSearch, IoHeartOutline } from "react-icons/io5";
 import { BiHomeAlt2 } from "react-icons/bi";
@@ -10,6 +10,8 @@ import {
   MdPeopleOutline,
   MdOutlineLogout,
 } from "react-icons/md";
+import Cookies from "js-cookie";
+import { useGlobalContext } from "@/helper/context";
 
 const itemlist = [
   {
@@ -53,6 +55,15 @@ const itemlist = [
 const Leftbar = () => {
   const [navOpen, setNavOpen] = useState(false);
   const pathname = usePathname();
+  const { setUser } = useGlobalContext();
+
+  const router = useRouter();
+
+  const handleLogout = () => {
+    Cookies.remove("undefined");
+    setUser(undefined);
+    // router.push("/");
+  };
 
   return (
     <>
@@ -88,7 +99,10 @@ const Leftbar = () => {
             );
           })}
         </div>
-        <div className="signout flex gap-2 items-center p-4">
+        <div
+          onClick={handleLogout}
+          className="signout flex cursor-pointer gap-2 items-center p-4"
+        >
           <MdOutlineLogout />
           <span>Logout</span>
         </div>

@@ -35,7 +35,7 @@ export default function signupPage() {
     }
   };
   return (
-    <div className="signin w-full h-full flex items-center justify-center">
+    <div className="signin w-full h-full flex items-center justify-center text-black">
       <div className="form text-center lg:w-96 w-full bg-white p-6 rounded-xl">
         <h3 className="font-semibold text-2xl">Register</h3>
         <form>

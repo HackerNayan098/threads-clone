@@ -2,8 +2,13 @@
 import Button from "@/components/Button";
 import React from "react";
 import profileImg from "@/images/profile-img.jpg";
+import { useGlobalContext } from "@/helper/context";
 
 const page = () => {
+  const { user, userData } = useGlobalContext();
+
+  console.log(user);
+
   return (
     <div className="lg:p-8 p-4">
       <section className="border-b-[3px]">
@@ -17,8 +22,8 @@ const page = () => {
               />
             </div>
             <div>
-              <h3 className="font-bold text-xl">Nayan Bhalerao</h3>
-              <h5 className="">@nayanb</h5>
+              <h3 className="font-bold text-xl">{user?.name}</h3>
+              <h5 className="">@{user?.username}</h5>
             </div>
           </div>
           <div>
