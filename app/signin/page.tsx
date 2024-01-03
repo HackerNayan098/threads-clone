@@ -5,10 +5,11 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useGlobalContext } from "@/helper/context";
+// import { useGlobalContext } from "@/helper/context";
+import { signIn } from "next-auth/react";
 
 const page = () => {
-  const { loginUser } = useGlobalContext();
+  // const { loginUser } = useGlobalContext();
   const router = useRouter();
   const [seePass, setSeePass] = useState(false);
   const [userInfo, setUserInfo] = useState({
@@ -21,18 +22,24 @@ const page = () => {
     setUserInfo({ ...userInfo, [name]: value });
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
-    try {
-      await loginUser(userInfo);
-      setUserInfo({
-        email: "",
-        password: "",
-      });
-      router.push("/");
-    } catch (error: any) {
-      console.log("signup failed", error.message);
-    }
+    signIn("credentials", {
+      ...userInfo,
+      redirect: false,
+    }).then((callback) => {
+      if (callback?.ok) {
+        router.push("/");
+        setUserInfo({
+          email: "",
+          password: "",
+        });
+      }
+
+      if (callback?.error) {
+        console.log(callback.error);
+      }
+    });
   };
 
   return (

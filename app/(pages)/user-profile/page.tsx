@@ -5,9 +5,9 @@ import profileImg from "@/images/profile-img.jpg";
 import { useGlobalContext } from "@/helper/context";
 
 const page = () => {
-  const { user, userData } = useGlobalContext();
+  const { userData } = useGlobalContext();
 
-  console.log(user);
+  console.log(userData);
 
   return (
     <div className="lg:p-8 p-4">
@@ -22,8 +22,8 @@ const page = () => {
               />
             </div>
             <div>
-              <h3 className="font-bold text-xl">{user?.name}</h3>
-              <h5 className="">@{user?.username}</h5>
+              <h3 className="font-bold text-xl">{userData?.name}</h3>
+              <h5 className="">@{userData?.username}</h5>
             </div>
           </div>
           <div>

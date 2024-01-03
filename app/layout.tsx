@@ -1,8 +1,9 @@
-import AuthRoutes from "@/components/AuthRoutes";
 import "./globals.css";
 import Leftbar from "@/components/Shared/Leftbar";
 import Rightbar from "@/components/Shared/Rightbar";
 import { GlobalApiProvider } from "@/helper/context";
+import AuthRoutes from "@/components/AuthRoutes";
+import { SessionProvider } from "next-auth/react";
 
 export const metadata = {
   title: "Thread Clone",
@@ -17,8 +18,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={` w-full h-screen bg-black text-white`}>
-        <GlobalApiProvider>
-          <AuthRoutes>
+        <AuthRoutes>
+          <GlobalApiProvider>
             <div className="main-container h-full lg:grid lg:grid-cols-5 gap-4">
               <section className="lg:col-span-1">
                 <Leftbar />
@@ -30,8 +31,8 @@ export default function RootLayout({
                 <Rightbar />
               </section>
             </div>
-          </AuthRoutes>
-        </GlobalApiProvider>
+          </GlobalApiProvider>
+        </AuthRoutes>
       </body>
     </html>
   );

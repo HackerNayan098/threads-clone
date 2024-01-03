@@ -10,7 +10,8 @@ import {
   MdPeopleOutline,
   MdOutlineLogout,
 } from "react-icons/md";
-import Cookies from "js-cookie";
+// import Cookies from "js-cookie";
+import { signOut } from "next-auth/react";
 import { useGlobalContext } from "@/helper/context";
 
 const itemlist = [
@@ -55,59 +56,56 @@ const itemlist = [
 const Leftbar = () => {
   const [navOpen, setNavOpen] = useState(false);
   const pathname = usePathname();
-  const { setUser } = useGlobalContext();
-
-  const router = useRouter();
-
-  const handleLogout = () => {
-    Cookies.remove("undefined");
-    setUser(undefined);
-    // router.push("/");
-  };
+  const { authentic } = useGlobalContext();
 
   return (
-    <>
-      <div
-        className="nav-icon lg:hidden w-10 h-10 flex justify-center items-center bg-[#f5f5f5] text-blue-500 text-[1.5rem] m-2 border-black border-2 rounded-[8px] absolute z-[2] "
-        onClick={() => setNavOpen(!navOpen)}
-      >
-        {navOpen ? <IoClose /> : <FaBars />}
-      </div>
-      <nav
-        className={` h-full lg:flex flex-col items-center justify-between bg-[#1d1d1d] hidden ${
-          navOpen ? "nav-active" : ""
-        }`}
-      >
-        <div className="nav-list flex flex-col gap-8 py-6 mt-12">
-          {itemlist.map((item) => {
-            return (
-              <li
-                key={item.id}
-                className={`flex items-center gap-2 cursor-pointer text-[1.1rem] ${
-                  pathname === item.redirect ? "activated-nav" : ""
-                }`}
-                onClick={() => {
-                  if (window.innerWidth < 1024) {
-                    setNavOpen(!navOpen);
-                  }
-                }}
-              >
-                <Link href={item.redirect} className="flex items-center gap-2">
-                  {item.icon} {item.title}
-                </Link>
-              </li>
-            );
-          })}
-        </div>
+    !authentic && (
+      <>
         <div
-          onClick={handleLogout}
-          className="signout flex cursor-pointer gap-2 items-center p-4"
+          className="nav-icon lg:hidden w-10 h-10 flex justify-center items-center bg-[#f5f5f5] text-blue-500 text-[1.5rem] m-2 border-black border-2 rounded-[8px] absolute z-[2] "
+          onClick={() => setNavOpen(!navOpen)}
         >
-          <MdOutlineLogout />
-          <span>Logout</span>
+          {navOpen ? <IoClose /> : <FaBars />}
         </div>
-      </nav>
-    </>
+        <nav
+          className={` h-full lg:flex flex-col items-center justify-between bg-[#1d1d1d] hidden ${
+            navOpen ? "nav-active" : ""
+          }`}
+        >
+          <div className="nav-list flex flex-col gap-8 py-6 mt-12">
+            {itemlist.map((item) => {
+              return (
+                <li
+                  key={item.id}
+                  className={`flex items-center gap-2 cursor-pointer text-[1.1rem] ${
+                    pathname === item.redirect ? "activated-nav" : ""
+                  }`}
+                  onClick={() => {
+                    if (window.innerWidth < 1024) {
+                      setNavOpen(!navOpen);
+                    }
+                  }}
+                >
+                  <Link
+                    href={item.redirect}
+                    className="flex items-center gap-2"
+                  >
+                    {item.icon} {item.title}
+                  </Link>
+                </li>
+              );
+            })}
+          </div>
+          <div
+            onClick={() => signOut()}
+            className="signout flex cursor-pointer gap-2 items-center p-4"
+          >
+            <MdOutlineLogout />
+            <span>Logout</span>
+          </div>
+        </nav>
+      </>
+    )
   );
 };
 
