@@ -4,8 +4,10 @@ import { MdOutlinePhoto } from "react-icons/md";
 import { IoVideocamOutline } from "react-icons/io5";
 import { GoPaperAirplane } from "react-icons/go";
 import axios from "axios";
+import { useGlobalContext } from "@/helper/context";
 
 const page = () => {
+  const { userData } = useGlobalContext();
   const [thread, setThread] = useState({
     text: "",
     image: "",
@@ -14,14 +16,16 @@ const page = () => {
   const addPost = (e: any) => {
     const { name, value } = e.target;
     setThread({ ...thread, [name]: value });
-    console.log(name, value);
   };
 
   const savePost = async (e: any) => {
     e.preventDefault();
     try {
-      const saveThread = await axios.post("/api/thread", thread);
-      console.log(saveThread);
+      await axios.post("/api/thread", {
+        ...thread,
+        author: userData._id,
+        authorId: userData._id,
+      });
       setThread({
         text: "",
         image: "",

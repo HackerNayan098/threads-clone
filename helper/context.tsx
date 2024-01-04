@@ -25,6 +25,13 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
 
   const [error, setError] = useState(null);
   const [userData, setUserData] = useState<any>(undefined);
+  const [posts, setPosts] = useState<any>([]);
+
+  useEffect(() => {
+    axios.get("/api/thread").then((res: any) => {
+      setPosts(res.data.data);
+    });
+  }, []);
 
   useEffect(() => {
     axios.get("/api/user").then((res: any) => {
@@ -33,7 +40,7 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
   }, []);
 
   return (
-    <GlobalContext.Provider value={{ userData, authentic }}>
+    <GlobalContext.Provider value={{ userData, posts, authentic }}>
       {children}
     </GlobalContext.Provider>
   );

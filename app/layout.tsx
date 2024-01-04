@@ -17,17 +17,19 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={` w-full h-screen bg-black text-white`}>
+      <body
+        className={` w-full h-screen bg-black text-white lg:overflow-hidden`}
+      >
         <AuthRoutes>
           <GlobalApiProvider>
             <div className="main-container h-full lg:grid lg:grid-cols-5 gap-4">
               <section className="lg:col-span-1">
                 <Leftbar />
               </section>
-              <section className="lg:col-start-2 lg:col-span-3 lg:py-2 py-8">
+              <section className="lg:col-start-2 lg:col-span-3 lg:py-2 min-h-screen overflow-y-auto py-8">
                 {children}
               </section>
-              <section className="col-span-1 lg:py-2 py-8">
+              <section className="col-span-1 lg:py-0 py-8">
                 <Rightbar />
               </section>
             </div>

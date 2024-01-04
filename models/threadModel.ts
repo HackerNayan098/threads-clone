@@ -13,6 +13,9 @@ const threadSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
     },
+    authorId: {
+      type: String,
+    },
     community: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Community",

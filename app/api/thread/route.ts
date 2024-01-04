@@ -24,6 +24,19 @@ export async function POST(req: NextRequest) {
   }
 }
 
+export async function GET() {
+  try {
+    const posts = await Thread.find({});
+    return NextResponse.json({
+      message: "User Posts",
+      status: 200,
+      data: posts,
+    });
+  } catch (err: any) {
+    return NextResponse.json({ err: err.message }, { status: 500 });
+  }
+}
+
 export async function DELETE(req: NextRequest) {
   // const router = useRouter();
   try {
