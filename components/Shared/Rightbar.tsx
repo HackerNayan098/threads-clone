@@ -13,7 +13,7 @@ const Rightbar = () => {
     !authentic && (
       <>
         <div
-          className="lg:hidden w-10 h-10 flex justify-center items-center bg-[#f5f5f5] text-blue-500 text-[1.5rem] m-2 border-black border-2 rounded-[8px] absolute z-[2] top-0 right-0"
+          className="lg:hidden w-10 h-10 flex justify-center items-center text-white text-[1.5rem] m-4 border-white border-2 rounded-[8px] absolute z-[2] top-0 right-0"
           onClick={() => setSuggest(!suggest)}
         >
           {suggest ? <IoClose /> : <TbBulb />}

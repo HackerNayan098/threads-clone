@@ -7,10 +7,12 @@ connect();
 export async function POST(req: NextRequest) {
   try {
     const reqThread = await req.json();
-    const { text, image } = reqThread;
+    const { text, image, author, authorId } = reqThread;
     const thread = new Thread({
       text,
       image,
+      author,
+      authorId,
     });
     await thread.save();
     console.log(thread);
@@ -26,7 +28,7 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   try {
-    const posts = await Thread.find({});
+    const posts = await Thread.find({}).populate("author");
     return NextResponse.json({
       message: "User Posts",
       status: 200,
