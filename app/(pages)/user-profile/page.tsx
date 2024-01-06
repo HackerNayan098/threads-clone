@@ -1,13 +1,21 @@
 "use client";
+import React, { useState } from "react";
 import Button from "@/components/Button";
-import React from "react";
 import profileImg from "@/images/profile-img.jpg";
 import { useGlobalContext } from "@/helper/context";
+import Card from "@/components/Card";
 
 const page = () => {
-  const { userData } = useGlobalContext();
+  const [activeTab, setActiveTab] = useState("Thread");
+  const { userData, posts } = useGlobalContext();
 
-  console.log(userData);
+  const tabs = [
+    { id: 1, title: "Thread" },
+    { id: 2, title: "Replies" },
+    { id: 3, title: "Tagged" },
+  ];
+
+  const userPost = posts.filter((up: any) => userData?._id === up.author._id);
 
   return (
     <div className="lg:p-8 p-4">
@@ -36,10 +44,43 @@ const page = () => {
         </div>
       </section>
       <section className="grid grid-cols-3 p-4 text-center text-lg bg-[#1d1d1d] mt-2">
-        <div className="col-span-1">Threads</div>
-        <div className="col-span-1">Replies</div>
-        <div className="col-span-1">Tagged</div>
+        {tabs.map((t) => {
+          return (
+            <div
+              key={t.id}
+              className="col-span-1 cursor-pointer"
+              onClick={() => setActiveTab(t.title)}
+            >
+              <span
+                className={`relative  ${
+                  activeTab === t.title ? "tabs-title" : ""
+                }`}
+              >
+                {t.title}
+              </span>
+            </div>
+          );
+        })}
       </section>
+      <div className={` ${activeTab === "Thread" ? "block" : "hidden"}`}>
+        <div className="grid gap-2 grid-cols-1 lg:grid-cols-2">
+          {userPost.length === 0
+            ? "NO Posts"
+            : userPost.map((p: any) => {
+                return <Card post={p} />;
+              })}
+        </div>
+      </div>
+
+      <div className={` ${activeTab === "Replies" ? "block" : "hidden"}`}>
+        <h3>Replies</h3>
+        <p>Paris is the capital of France.</p>
+      </div>
+
+      <div className={` ${activeTab === "Tagged" ? "block" : "hidden"}`}>
+        <h3>Tagged</h3>
+        <p>Tokyo is the capital of Japan.</p>
+      </div>
     </div>
   );
 };
