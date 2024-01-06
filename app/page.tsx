@@ -11,9 +11,8 @@ export default function Home() {
   console.log(posts);
 
   return (
-    <div className="home lg:p-8 p-4 py-8 w-full h-full">
-      <h2 className="font-bold text-2xl">Home</h2>
-      <div className="grid lg:grid-cols-2 grid-cols-1">
+    <div className="home px-4 lg:px-0 w-full h-full">
+      <div className="grid grid-cols-1 gap-4 w-full">
         {posts.length > 0 &&
           posts.map((p: any) => {
             return <Card post={p} />;
