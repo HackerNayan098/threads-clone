@@ -1,5 +1,6 @@
 import { connect } from "@/dbconfig/connection";
 import Thread from "@/models/threadModel";
+import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 
 connect();
@@ -14,8 +15,9 @@ export async function POST(req: NextRequest) {
       author,
       authorId,
     });
-    await thread.save();
-    console.log(thread);
+    const threadId = await thread.save();
+    const userPosts = await User.findOne({ _id: authorId });
+    userPosts.threads.push(threadId._id);
 
     return NextResponse.json({
       message: "Thread Added Successfully",

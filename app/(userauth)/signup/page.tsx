@@ -18,10 +18,9 @@ export default function signupPage() {
     password: "",
   });
 
-  const handleChnage = (e: any) => {
+  const handleChange = (e: any) => {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    console.log(name, value);
   };
 
   const handleSubmit = async (e: any) => {
@@ -44,35 +43,35 @@ export default function signupPage() {
             placeholder="enter your name"
             name="name"
             value={user.name}
-            onChange={(e) => handleChnage(e)}
+            onChange={(e) => handleChange(e)}
           />
           <Input
             type="number"
             placeholder="enter your Phone Number"
             name="phone"
             value={user.phone}
-            onChange={(e) => handleChnage(e)}
+            onChange={(e) => handleChange(e)}
           />
           <Input
             type="text"
             placeholder="enter your email"
             name="email"
             value={user.email}
-            onChange={(e) => handleChnage(e)}
+            onChange={(e) => handleChange(e)}
           />
           <Input
             type="text"
             placeholder="enter your username"
             name="username"
             value={user.username}
-            onChange={(e) => handleChnage(e)}
+            onChange={(e) => handleChange(e)}
           />
           <Input
             type={seePass ? "text" : "password"}
             placeholder="enter your password"
             name="password"
             value={user.password}
-            onChange={(e) => handleChnage(e)}
+            onChange={(e) => handleChange(e)}
             elem={
               seePass ? (
                 <AiFillEye size={25} onClick={() => setSeePass(!seePass)} />

@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
   threads: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Thread",
+      ref: "threads",
     },
   ],
 });

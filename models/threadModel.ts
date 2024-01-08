@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const threadSchema = new mongoose.Schema(
+const ThreadSchema = new mongoose.Schema(
   {
     text: {
       type: String,
@@ -16,14 +16,12 @@ const threadSchema = new mongoose.Schema(
     authorId: {
       type: String,
     },
-    community: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Community",
-    },
+    comments: [{ type: mongoose.Schema.Types.ObjectId, ref: "comments" }],
   },
   { timestamps: true }
 );
 
-const Thread = mongoose.models.Thread || mongoose.model("Thread", threadSchema);
+const Thread =
+  mongoose.models.threads || mongoose.model("threads", ThreadSchema);
 
 export default Thread;

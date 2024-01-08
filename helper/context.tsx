@@ -33,6 +33,7 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
     });
   }, []);
 
+  // User API'S
   useEffect(() => {
     axios.get("/api/user").then((res: any) => {
       setUserData(res.data);

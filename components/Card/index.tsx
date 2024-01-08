@@ -1,5 +1,6 @@
 "use client";
 import { useState } from "react";
+import axios from "axios";
 import Image from "next/image";
 import Input from "../Input";
 import { PiShareFatLight } from "react-icons/pi";
@@ -9,9 +10,37 @@ import {
   AiOutlineMessage,
   AiOutlineSend,
 } from "react-icons/ai";
+import { useGlobalContext } from "@/helper/context";
 
 const Card = ({ post }: any) => {
+  const { userData, posts } = useGlobalContext();
   const [commentActive, setCommentActive] = useState(false);
+  const [comment, setComment] = useState({
+    text: "",
+  });
+
+  const addComment = (e: any) => {
+    const { name, value } = e.target;
+    setComment({ ...comment, [name]: value });
+  };
+
+  const saveComment = async (e: any) => {
+    e.preventDefault();
+    try {
+      await axios.post("/api/comments", {
+        ...comment,
+        author: userData._id,
+        authorId: userData._id,
+        thread: posts._id,
+        threadId: posts._id,
+      });
+      setComment({ text: "" });
+      setCommentActive(false);
+    } catch (err: any) {
+      console.log("comment not added", err.message);
+    }
+  };
+
   return (
     <div className="mx-auto w-full lg:p-6 p-4 bg-white dark:bg-black rounded-2xl ">
       <section className="flex items-start gap-4">
@@ -44,8 +73,15 @@ const Card = ({ post }: any) => {
           <Input
             type="text"
             placeholder="enter a comment"
-            name="comment"
-            elem={<AiOutlineSend className="w-7 h-7 ml-1 cursor-pointer" />}
+            name="text"
+            value={comment.text}
+            onChange={(e) => addComment(e)}
+            elem={
+              <AiOutlineSend
+                className="w-7 h-7 ml-1 cursor-pointer"
+                onClick={(e: any) => saveComment(e)}
+              />
+            }
           />
         </section>
       )}
