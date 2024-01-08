@@ -1,21 +1,44 @@
 "use client";
 
 import Link from "next/link";
-import { MdAdd } from "react-icons/md";
+import { MdOutlinePostAdd } from "react-icons/md";
+import { useTheme } from "next-themes";
+import { FaMoon } from "react-icons/fa6";
+import { BiSolidSun } from "react-icons/bi";
 
 const Header = () => {
+  const { theme, setTheme } = useTheme();
+
   return (
-    <div className="py-4 px-12 bg-white text-black">
+    <div className="py-4 px-4 lg:px-12 bg-white dark:bg-black dark:text-white">
       <div className="flex justify-between items-center">
-        <div className="text-3xl font-bold">Logo</div>
-        <div>
+        <Link href={"/"}>
+          <div className="text-3xl font-bold">Logo</div>
+        </Link>
+        <div className="flex items-center gap-2">
           <Link
             href={"/create-thread"}
-            className="py-3 px-6 flex gap-1 items-center font-semibold text-lg bg-blue-600 text-white rounded-full"
+            className="py-3 px-6 flex gap-1 items-center font-semibold text-lg bg-primary text-white rounded-full"
           >
-            <MdAdd size={18} />
+            <MdOutlinePostAdd size={18} />
             Create
           </Link>
+          <button
+            className="p-2 lg:p-3"
+            onClick={() => {
+              if (theme === "light") {
+                setTheme("dark");
+              } else {
+                setTheme("light");
+              }
+            }}
+          >
+            {theme === "light" ? (
+              <FaMoon size={25} />
+            ) : (
+              <BiSolidSun size={25} />
+            )}
+          </button>
         </div>
       </div>
     </div>

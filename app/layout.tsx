@@ -1,10 +1,5 @@
 import "./globals.css";
-import Leftbar from "@/components/Shared/Leftbar";
-import Rightbar from "@/components/Shared/Rightbar";
-import { GlobalApiProvider } from "@/helper/context";
 import AuthRoutes from "@/components/AuthRoutes";
-import { SessionProvider } from "next-auth/react";
-import Header from "@/components/Header";
 
 export const metadata = {
   title: "Thread Clone",
@@ -18,25 +13,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body
-        className={` w-full h-screen bg-[#f0eef6] text-white lg:overflow-hidden`}
-      >
-        <AuthRoutes>
-          <GlobalApiProvider>
-            <Header />
-            <div className="main-container h-full lg:grid lg:grid-cols-5 gap-4 p-6">
-              <section className="lg:col-span-1">
-                <Leftbar />
-              </section>
-              <section className="lg:col-start-2 lg:col-span-3 min-h-screen overflow-y-auto">
-                {children}
-              </section>
-              <section className="col-span-1 lg:py-0 py-8">
-                <Rightbar />
-              </section>
-            </div>
-          </GlobalApiProvider>
-        </AuthRoutes>
+      <body className={` w-full h-screen lg:overflow-hidden`}>
+        <AuthRoutes>{children}</AuthRoutes>
       </body>
     </html>
   );
