@@ -16,7 +16,7 @@ const AuthRoutes = ({ children }: { children: React.ReactNode }) => {
       >
         <GlobalApiProvider>
           <Header />
-          <div className="main-container bg-[#f0eef6] dark:bg-stone-950 dark:text-light h-[calc(100vh_-_84px)] lg:grid lg:grid-cols-5 gap-4 p-4">
+          <div className="main-container bg-[#f0eef6] dark:bg-stone-950 dark:text-light lg:h-[calc(100vh_-_84px)] lg:grid lg:grid-cols-5 gap-4 p-4">
             <section className="lg:col-span-1">
               <Leftbar />
             </section>

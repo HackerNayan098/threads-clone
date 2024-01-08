@@ -1,10 +1,8 @@
 "use client";
-
 import Link from "next/link";
-import { MdOutlinePostAdd } from "react-icons/md";
 import { useTheme } from "next-themes";
-import { FaMoon } from "react-icons/fa6";
-import { BiSolidSun } from "react-icons/bi";
+import { IoSunny, IoMoon } from "react-icons/io5";
+import { AiOutlinePlusSquare } from "react-icons/ai";
 
 const Header = () => {
   const { theme, setTheme } = useTheme();
@@ -20,7 +18,7 @@ const Header = () => {
             href={"/create-thread"}
             className="py-3 px-6 flex gap-1 items-center font-semibold text-lg bg-primary text-white rounded-full"
           >
-            <MdOutlinePostAdd size={18} />
+            <AiOutlinePlusSquare size={18} />
             Create
           </Link>
           <button
@@ -33,11 +31,7 @@ const Header = () => {
               }
             }}
           >
-            {theme === "light" ? (
-              <FaMoon size={25} />
-            ) : (
-              <BiSolidSun size={25} />
-            )}
+            {theme === "light" ? <IoMoon size={30} /> : <IoSunny size={30} />}
           </button>
         </div>
       </div>

@@ -2,54 +2,54 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaRegUser } from "react-icons/fa6";
-import { IoSearch, IoHeartOutline } from "react-icons/io5";
-import { BiHomeAlt2 } from "react-icons/bi";
-import {
-  MdOutlinePostAdd,
-  MdPeopleOutline,
-  MdOutlineLogout,
-} from "react-icons/md";
-// import Cookies from "js-cookie";
 import { signOut } from "next-auth/react";
 import { useGlobalContext } from "@/helper/context";
 import Image from "next/image";
+import {
+  AiOutlineLogout,
+  AiOutlineHeart,
+  AiOutlineHome,
+  AiOutlineSearch,
+  AiOutlineUser,
+  AiOutlineTeam,
+  AiOutlinePlusSquare,
+} from "react-icons/ai";
 
 const itemlist = [
   {
     id: 1,
     title: "Home",
-    icon: <BiHomeAlt2 size={25} />,
+    icon: <AiOutlineHome size={25} />,
     redirect: "/",
   },
   {
     id: 2,
     title: "Search",
-    icon: <IoSearch size={25} />,
+    icon: <AiOutlineSearch size={25} />,
     redirect: "/search",
   },
   {
     id: 3,
     title: "Activity",
-    icon: <IoHeartOutline size={25} />,
+    icon: <AiOutlineHeart size={25} />,
     redirect: "/activity",
   },
   {
     id: 4,
     title: "Create Thread",
-    icon: <MdOutlinePostAdd size={25} />,
+    icon: <AiOutlinePlusSquare size={25} />,
     redirect: "/create-thread",
   },
   {
     id: 5,
     title: "Communities",
-    icon: <MdPeopleOutline size={25} />,
+    icon: <AiOutlineTeam size={25} />,
     redirect: "/communities",
   },
   {
     id: 6,
     title: "Profile",
-    icon: <FaRegUser size={25} />,
+    icon: <AiOutlineUser size={25} />,
     redirect: "/user-profile",
   },
 ];
@@ -106,7 +106,7 @@ const Leftbar = () => {
             onClick={() => signOut()}
             className="signout flex cursor-pointer text-white font-semibold gap-2 items-center py-4 px-8 my-6 bg-primary rounded-full"
           >
-            <MdOutlineLogout />
+            <AiOutlineLogout />
             <span>Logout</span>
           </div>
         </nav>

@@ -1,11 +1,14 @@
 "use client";
 import { useState } from "react";
-import { IoMdHeartEmpty, IoMdHeart } from "react-icons/io";
-import { IoChatbubbleEllipsesOutline } from "react-icons/io5";
-import { PiShareFatLight } from "react-icons/pi";
-import { GoPaperAirplane } from "react-icons/go";
 import Image from "next/image";
 import Input from "../Input";
+import { PiShareFatLight } from "react-icons/pi";
+import {
+  AiOutlineHeart,
+  AiFillHeart,
+  AiOutlineMessage,
+  AiOutlineSend,
+} from "react-icons/ai";
 
 const Card = ({ post }: any) => {
   const [commentActive, setCommentActive] = useState(false);
@@ -28,8 +31,8 @@ const Card = ({ post }: any) => {
       </section>
       <div className="h-72 lg:h-[480px] bg-gray-300 dark:bg-stone-900 my-6 rounded-2xl"></div>
       <section className="flex gap-4 my-2">
-        <IoMdHeartEmpty size={28} />
-        <IoChatbubbleEllipsesOutline
+        <AiOutlineHeart size={28} />
+        <AiOutlineMessage
           className="cursor-pointer"
           size={28}
           onClick={() => setCommentActive(!commentActive)}
@@ -42,7 +45,7 @@ const Card = ({ post }: any) => {
             type="text"
             placeholder="enter a comment"
             name="comment"
-            elem={<GoPaperAirplane className="w-7 h-7 ml-1 cursor-pointer" />}
+            elem={<AiOutlineSend className="w-7 h-7 ml-1 cursor-pointer" />}
           />
         </section>
       )}
