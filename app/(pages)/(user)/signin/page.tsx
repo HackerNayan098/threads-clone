@@ -7,7 +7,7 @@ import Link from "next/link";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 
-const page = () => {
+const Signin = () => {
   const router = useRouter();
   const [seePass, setSeePass] = useState(false);
   const [userInfo, setUserInfo] = useState({ email: "", password: "" });
@@ -89,4 +89,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Signin;

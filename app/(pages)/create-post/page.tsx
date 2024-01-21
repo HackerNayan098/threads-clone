@@ -10,7 +10,7 @@ import Image from "next/image";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const page = () => {
+const Page = () => {
   const { loggedUser, setPosts } = useGlobalContext();
 
   const router = useRouter();
@@ -145,4 +145,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

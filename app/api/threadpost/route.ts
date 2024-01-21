@@ -42,22 +42,22 @@ export async function GET(req: NextRequest) {
   }
 }
 
-export async function DELETE(req: NextResponse) {
-  // const router = useRouter();
-  try {
-    const reqId = await req.json();
-    const { id } = reqId;
-    // const { id } = router.query;
-    await Thread.findByIdAndDelete(id);
-    return NextResponse.json({
-      message: "Post Deleted Successfully !",
-      status: 200,
-    });
-  } catch (error: any) {
-    console.log(error);
-    return NextResponse.json({
-      message: "Internal Error",
-      status: 500,
-    });
-  }
-}
+// export async function DELETE(req: NextResponse) {
+//   const router = useRouter();
+//   try {
+//     const reqId = await req.json();
+//     const { id } = reqId;
+//     const { id } = router.query;
+//     await Thread.findByIdAndDelete(id);
+//     return NextResponse.json({
+//       message: "Post Deleted Successfully !",
+//       status: 200,
+//     });
+//   } catch (error: any) {
+//     console.log(error);
+//     return NextResponse.json({
+//       message: "Internal Error",
+//       status: 500,
+//     });
+//   }
+// }

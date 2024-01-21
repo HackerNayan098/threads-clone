@@ -5,7 +5,7 @@ import { FaPen } from "react-icons/fa6";
 import { PiSmileySad } from "react-icons/pi";
 import Image from "next/image";
 
-const page = () => {
+const Page = () => {
   const { loggedUser, posts } = useGlobalContext();
   const [activeTab, setActiveTab] = useState("Thread");
   const tabs = ["Thread", "Replies", "Tagged"];
@@ -97,4 +97,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
