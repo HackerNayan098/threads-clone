@@ -1,31 +1,31 @@
-import { connect } from "@/dbconfig/connection";
-import User from "@/models/userModel";
-import { NextRequest, NextResponse } from "next/server";
+import dbConnect from "@/dbconfig";
+import { User } from "@/models";
 import bcryptjs from "bcryptjs";
-connect();
+import { NextRequest, NextResponse } from "next/server";
+
+dbConnect();
 
 export async function POST(req: NextRequest) {
   try {
     const reqBody = await req.json();
     const { name, phone, email, username, password } = reqBody;
-    // Check if user already existed....
-    const user = await User.findOne({ email });
-    if (user) {
-      return NextResponse.json({ error: "User already exists", status: 400 });
+    // Check if user already exist
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return NextResponse.json({ error: "User already exist !", status: 500 });
     }
-    // hashpassword
-    const hashpass = await bcryptjs.hash(password, await bcryptjs.genSalt(10));
+    // Hashing Password
+    const hashPass = await bcryptjs.hash(password, await bcryptjs.genSalt(10));
 
-    const newUser = new User({
+    const registerUser = new User({
       ...reqBody,
-      password: hashpass,
+      password: hashPass,
     });
-    await newUser.save();
-
+    await registerUser.save();
     return NextResponse.json({
       message: "User Registred Successfully !",
       success: true,
-      data: newUser,
+      data: registerUser,
     });
   } catch (err: any) {
     return NextResponse.json({ err: err.message, status: 500 });

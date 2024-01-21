@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { useGlobalContext } from "@/helpers/context";
 import { signOut } from "next-auth/react";
-import { useGlobalContext } from "@/helper/context";
+import Link from "next/link";
 import Image from "next/image";
 import {
   AiOutlineLogout,
@@ -15,7 +15,7 @@ import {
   AiOutlinePlusSquare,
 } from "react-icons/ai";
 
-const itemlist = [
+const navList = [
   {
     id: 1,
     title: "Home",
@@ -36,9 +36,9 @@ const itemlist = [
   },
   {
     id: 4,
-    title: "Create Thread",
+    title: "Create Post",
     icon: <AiOutlinePlusSquare size={25} />,
-    redirect: "/create-thread",
+    redirect: "/create-post",
   },
   {
     id: 5,
@@ -53,11 +53,10 @@ const itemlist = [
     redirect: "/user-profile",
   },
 ];
-
-const Leftbar = () => {
-  const [navOpen, setNavOpen] = useState(false);
+const index = () => {
   const pathname = usePathname();
-  const { authentic, userData } = useGlobalContext();
+  const { authentic, loggedUser } = useGlobalContext();
+  const [openNav, setOpenNav] = useState(false);
 
   return (
     !authentic && (
@@ -74,12 +73,12 @@ const Leftbar = () => {
               />
             </div>
             <div>
-              <h4 className="font-bold text-lg">{userData?.name}</h4>
-              <p className="text-gray-500 text-lg">@{userData?.username}</p>
+              <h4 className="font-bold text-lg">{loggedUser?.name}</h4>
+              <p className="text-gray-500 text-lg">@{loggedUser?.username}</p>
             </div>
           </div>
           <div className="nav-list flex flex-col rounded-2xl w-full p-4 mx-auto bg-white dark:bg-black">
-            {itemlist.map((item) => {
+            {navList.map((item) => {
               return (
                 <li
                   key={item.id}
@@ -88,7 +87,7 @@ const Leftbar = () => {
                   }`}
                   onClick={() => {
                     if (window.innerWidth < 1024) {
-                      setNavOpen(!navOpen);
+                      setOpenNav(!openNav);
                     }
                   }}
                 >
@@ -110,8 +109,8 @@ const Leftbar = () => {
             <span>Logout</span>
           </div>
         </nav>
-        <nav className="fixed bottom-0 z-50 left-0 w-full bg-white dark:bg-black p-2 border-t border-gray-300 lg:hidden flex justify-between">
-          {itemlist.map((item) => {
+        <nav className="fixed bottom-0 left-0 w-full bg-white dark:bg-black p-2 border-t border-gray-300 lg:hidden flex justify-between">
+          {navList.map((item) => {
             return (
               <Link
                 className={`rounded-2xl p-3 ${
@@ -130,4 +129,4 @@ const Leftbar = () => {
   );
 };
 
-export default Leftbar;
+export default index;

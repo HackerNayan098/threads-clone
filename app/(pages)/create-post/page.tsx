@@ -1,38 +1,38 @@
 "use client";
-import React, { useState, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { MdOutlinePhoto } from "react-icons/md";
 import { IoVideocam, IoVideocamOutline } from "react-icons/io5";
-import { GoPaperAirplane } from "react-icons/go";
-import axios from "axios";
-import { useGlobalContext } from "@/helper/context";
+import { AiOutlineSend } from "react-icons/ai";
+import { useGlobalContext } from "@/helpers/context";
 import { BiSolidImageAdd } from "react-icons/bi";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
+import axios from "axios";
 
 const page = () => {
-  const { userData } = useGlobalContext();
-  const [imgUpload, setImgUpload] = useState("");
+  const { loggedUser } = useGlobalContext();
   const [mediaType, setMediaType] = useState("");
-  const [thread, setThread] = useState("");
+  const [threadText, setThreadText] = useState("");
+  const [imgUpload, setImgUpload] = useState("");
 
   // const addPost = (e: any) => {
   //   const { name, value } = e.target;
-  //   setThread({ ...thread, [name]: value });
+  //   setCreatePost({ ...createPost, [name]: value });
   // };
 
   const savePost = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.post("/api/thread", {
-        text: thread,
-        image: imgUpload,
-        author: userData._id,
-        authorId: userData._id,
+      await axios.post("/api/threadpost", {
+        postCaption: threadText,
+        postImage: imgUpload,
+        author: loggedUser._id,
+        authorId: loggedUser._id,
       });
-      setThread("");
+      setThreadText("");
       setImgUpload("");
-    } catch (err: any) {
-      console.log("post not added", err.message);
+    } catch (error: any) {
+      console.log("post not added", error.message);
     }
   };
 
@@ -47,9 +47,9 @@ const page = () => {
           className="w-full outline-0 dark:bg-transparent p-4 rounded-2xl text-lg border-[1px] border-gray-400"
           rows={10}
           placeholder="What's in your mind ?"
-          name="text"
-          value={thread}
-          onChange={(e) => setThread(e.target.value)}
+          name="postCaption"
+          value={threadText}
+          onChange={(e) => setThreadText(e.target.value)}
         ></textarea>
         <div className="my-6">
           {mediaType === "image" && (
@@ -125,7 +125,7 @@ const page = () => {
             </button>
           </div>
           <div className="text-white bg-primary p-2 rounded-xl">
-            <GoPaperAirplane
+            <AiOutlineSend
               className="w-7 h-7 ml-1 cursor-pointer"
               onClick={(e: any) => savePost(e)}
             />

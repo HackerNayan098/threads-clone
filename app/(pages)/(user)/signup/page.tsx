@@ -1,13 +1,12 @@
 "use client";
-import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { useState } from "react";
-import Button from "@/components/Button";
-import Input from "@/components/Input";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import axios from "axios";
-
-export default function signupPage() {
+import Link from "next/link";
+import Input from "@/components/Input";
+import Button from "@/components/Button";
+const page = () => {
   const router = useRouter();
   const [seePass, setSeePass] = useState(false);
   const [user, setUser] = useState({
@@ -27,15 +26,16 @@ export default function signupPage() {
     e.preventDefault();
     try {
       const response = await axios.post("/api/user/register", user);
-      console.log("Signup success", response.data);
+      console.log("Signup successfully", response.data);
       router.push("/");
-    } catch (error: any) {
-      console.log("signup failed", error.message);
+    } catch (err) {
+      console.log(err);
     }
   };
+
   return (
-    <div className="signin w-full h-full flex items-center justify-center text-black">
-      <div className="form text-center lg:w-96 w-full bg-white p-6 rounded-xl">
+    <div className="w-full h-full flex items-center justify-center text-black">
+      <div className="lg:w-96 w-full bg-white p-6 rounded-xl text-center">
         <h3 className="font-semibold text-2xl">Register</h3>
         <form>
           <Input
@@ -46,14 +46,14 @@ export default function signupPage() {
             onChange={(e) => handleChange(e)}
           />
           <Input
-            type="number"
-            placeholder="enter your Phone Number"
+            type="text"
+            placeholder="enter your phone number"
             name="phone"
             value={user.phone}
             onChange={(e) => handleChange(e)}
           />
           <Input
-            type="text"
+            type="email"
             placeholder="enter your email"
             name="email"
             value={user.email}
@@ -82,12 +82,11 @@ export default function signupPage() {
                 />
               )
             }
-            elemClass={"text-black absolute right-[20px] top-[27px]"}
           />
           <Button
-            onClick={(e) => handleSubmit(e)}
             btnTitle={"Register"}
-            cssClass={" w-full bg-blue-500 text-white py-2.5 rounded"}
+            btnCss={" w-full bg-blue-500 text-white py-2.5 rounded"}
+            onClick={(e) => handleSubmit(e)}
           />
           <p className="mt-4">Do you have an account ?</p>
           <Link href={"/signin"}>Login Here</Link>
@@ -95,4 +94,6 @@ export default function signupPage() {
       </div>
     </div>
   );
-}
+};
+
+export default page;

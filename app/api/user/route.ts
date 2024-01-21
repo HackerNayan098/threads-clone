@@ -1,19 +1,17 @@
-import User from "@/models/userModel";
-import { connect } from "@/dbconfig/connection";
-import { authOptions } from "@/pages/api/auth/[...nextauth]";
+import dbConnect from "@/dbconfig";
+import { User } from "@/models";
+import { authOptions } from "../../../pages/api/auth/[...nextauth]";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  await connect();
-
+  dbConnect();
   const session = await getServerSession(authOptions);
-
   if (session && session.user) {
     const { email } = session.user;
-    const main = await User.findOne({ email });
-    return NextResponse.json(main);
+    const user = await User.findOne({ email });
+    return NextResponse.json({ user });
   } else {
-    return NextResponse.json("401 Unauthorized");
+    return NextResponse.json("401 unautorized");
   }
 }

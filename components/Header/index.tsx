@@ -1,21 +1,20 @@
 "use client";
-import Link from "next/link";
-import { useTheme } from "next-themes";
 import { IoSunny, IoMoon } from "react-icons/io5";
 import { AiOutlinePlusSquare } from "react-icons/ai";
+import { useTheme } from "next-themes";
+import Link from "next/link";
 
-const Header = () => {
+const index = () => {
   const { theme, setTheme } = useTheme();
-
   return (
     <div className="py-4 px-4 lg:px-12 bg-white dark:bg-black dark:text-white">
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <Link href={"/"}>
-          <div className="text-3xl font-bold">Logo</div>
+          <div className="text-3xl font-bold">LOGO</div>
         </Link>
         <div className="flex items-center gap-2">
           <Link
-            href={"/create-thread"}
+            href={"/create-post"}
             className="py-3 px-6 flex gap-1 items-center font-semibold text-lg bg-primary text-white rounded-full"
           >
             <AiOutlinePlusSquare size={18} />
@@ -39,4 +38,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default index;

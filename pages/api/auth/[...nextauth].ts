@@ -3,8 +3,8 @@ import NextAuth, { NextAuthOptions } from "next-auth";
 // import GoogleProvider from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import bcryptjs from "bcryptjs";
-import { connect } from "@/dbconfig/connection";
-import User from "@/models/userModel";
+import dbConnect from "@/dbconfig";
+import { User } from "@/models";
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid credentials");
         }
 
-        await connect();
+        dbConnect();
 
         const auth = await User.findOne({ email });
 

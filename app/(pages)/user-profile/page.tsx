@@ -1,35 +1,35 @@
 "use client";
-import React, { useState } from "react";
-import profileImg from "@/images/profile-img.jpg";
-import { useGlobalContext } from "@/helper/context";
-import Card from "@/components/Card";
+import { useState } from "react";
+import { useGlobalContext } from "@/helpers/context";
 import { FaPen } from "react-icons/fa6";
 import { PiSmileySad } from "react-icons/pi";
+import Image from "next/image";
 
 const page = () => {
+  const { loggedUser, posts } = useGlobalContext();
   const [activeTab, setActiveTab] = useState("Thread");
-  const { userData, posts } = useGlobalContext();
-
   const tabs = ["Thread", "Replies", "Tagged"];
 
-  const userPost = posts.filter((up: any) => userData?._id === up.author._id);
+  const userPosts = posts.filter(
+    (up: any) => loggedUser?._id === up.author._id
+  );
 
   return (
     <div>
       <section>
         <div className="flex items-center justify-between py-4 lg:p-4">
           <div className="flex items-center justify-center gap-4">
-            <div className="w-20 h-20">
-              <img
-                src={profileImg.src}
-                alt=""
-                className="w-full rounded-full"
-              />
-            </div>
+            <Image
+              src={"/avatar.svg"}
+              alt="Avatar"
+              className="rounded-full"
+              height={56}
+              width={56}
+            />
             <div>
-              <h3 className="font-bold text-xl">{userData?.name}</h3>
+              <h3 className="font-bold text-xl">{loggedUser?.name}</h3>
               <h5 className="text-gray-500 text-lg font-medium">
-                @{userData?.username}
+                @{loggedUser?.username}
               </h5>
             </div>
           </div>
@@ -61,16 +61,18 @@ const page = () => {
       </section>
       <div>
         {activeTab === "Thread" && (
-          <div className="min-h-96 p-2">
-            {userPost.length === 0 ? (
+          <div className="bg-white dark:bg-black rounded-2xl min-h-96 p-2">
+            {userPosts.length === 0 ? (
               <div className="text-center py-20">
                 <PiSmileySad size={60} className="mx-auto" />
                 <h2 className="text-2xl font-semibold">No Post</h2>
               </div>
             ) : (
-              <div className="grid grid-cols-1 gap-4">
-                {userPost.map((p: any) => {
-                  return <Card post={p} />;
+              <div className="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+                {userPosts.map((p: any) => {
+                  return (
+                    <div className="w-full bg-gray-300 dark:bg-stone-900 rounded-2xl h-72"></div>
+                  );
                 })}
               </div>
             )}

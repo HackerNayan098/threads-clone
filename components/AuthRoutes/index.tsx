@@ -1,12 +1,12 @@
 "use client";
-import { GlobalApiProvider } from "@/helper/context";
+import { GlobalApiProvider } from "@/helpers/context";
 import { SessionProvider } from "next-auth/react";
 import { ThemeProvider } from "next-themes";
 import Header from "../Header";
-import Leftbar from "../Shared/Leftbar";
-import Rightbar from "../Shared/Rightbar";
+import Leftbar from "../Leftbar";
+import Rightbar from "../Rightbar";
 
-const AuthRoutes = ({ children }: { children: React.ReactNode }) => {
+const index = ({ children }: { children: React.ReactNode }) => {
   return (
     <SessionProvider>
       <ThemeProvider
@@ -33,4 +33,4 @@ const AuthRoutes = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default AuthRoutes;
+export default index;

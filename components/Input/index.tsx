@@ -2,13 +2,13 @@ interface inputProps {
   type: string;
   placeholder: string;
   name: string;
-  value?: any;
+  value?: string;
   onChange?: (e: any) => void;
   elem?: React.ReactElement;
   elemClass?: string;
 }
 
-const Input = ({
+const index = ({
   type,
   placeholder,
   name,
@@ -27,9 +27,9 @@ const Input = ({
         onChange={onChange}
         className="w-full outline-none text-lg"
       />
-      <span className={`${elemClass}`}>{elem}</span>
+      <span className={elemClass}>{elem}</span>
     </div>
   );
 };
 
-export default Input;
+export default index;

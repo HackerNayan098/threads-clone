@@ -1,10 +1,10 @@
-import User from "@/models/userModel";
-import { connect } from "@/dbconfig/connection";
+import { User } from "@/models";
 import { NextResponse } from "next/server";
+import dbConnect from "@/dbconfig";
+
+dbConnect();
 
 export async function GET() {
-  await connect();
-
   const allUsers = await User.find();
   if (allUsers) {
     return NextResponse.json(allUsers);
