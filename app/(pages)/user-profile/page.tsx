@@ -61,18 +61,16 @@ const page = () => {
       </section>
       <div>
         {activeTab === "Thread" && (
-          <div className="bg-white dark:bg-black rounded-2xl min-h-96 p-2">
+          <div className="min-h-96 p-2">
             {userPost.length === 0 ? (
               <div className="text-center py-20">
                 <PiSmileySad size={60} className="mx-auto" />
                 <h2 className="text-2xl font-semibold">No Post</h2>
               </div>
             ) : (
-              <div className="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+              <div className="grid grid-cols-1 gap-4">
                 {userPost.map((p: any) => {
-                  return (
-                    <div className="w-full bg-gray-300 dark:bg-stone-900 rounded-2xl h-72"></div>
-                  );
+                  return <Card post={p} />;
                 })}
               </div>
             )}

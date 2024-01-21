@@ -1,5 +1,12 @@
 "use client";
-import { createContext, useContext, useEffect, useState } from "react";
+import {
+  Dispatch,
+  SetStateAction,
+  createContext,
+  useContext,
+  useEffect,
+  useState,
+} from "react";
 import axios from "axios";
 import { usePathname } from "next/navigation";
 
@@ -8,30 +15,35 @@ interface ContextProps {
 }
 
 interface GCProps {
-  user: any;
+  userData: any;
+  posts: any[];
+  allUser: any[];
+  loading: boolean;
+  setLoading: (val: boolean) => void;
+  setPosts: SetStateAction<Dispatch<any[]>>;
+  authentic: any;
 }
 
-export const GlobalContext = createContext<any | GCProps>({
-  user: undefined,
-  setUser: () => {},
+export const GlobalContext = createContext<GCProps>({
   userData: undefined,
-  loginUser: (val: any) => {},
+  posts: [],
+  allUser: [],
+  loading: false,
+  setLoading: () => {},
+  setPosts: () => {},
+  authentic: false,
 });
 
 export const GlobalApiProvider = ({ children }: ContextProps) => {
-  const pathname = usePathname();
-  const authentic = pathname && ["/signin", "/signup"].includes(pathname);
-
   const [error, setError] = useState(null);
   const [userData, setUserData] = useState<any>(undefined);
   const [allUser, setAllUser] = useState<any>(undefined);
-  const [posts, setPosts] = useState<any>([]);
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
-  useEffect(() => {
-    axios.get("/api/thread").then((res: any) => {
-      setPosts(res.data.data);
-    });
-  }, []);
+  const pathname = usePathname();
+
+  const authentic = pathname && ["/signin", "/signup"].includes(pathname);
 
   // User API'S
   useEffect(() => {
@@ -45,7 +57,17 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
   }, []);
 
   return (
-    <GlobalContext.Provider value={{ userData, posts, authentic, allUser }}>
+    <GlobalContext.Provider
+      value={{
+        userData,
+        posts,
+        allUser,
+        loading,
+        setLoading,
+        setPosts,
+        authentic,
+      }}
+    >
       {children}
     </GlobalContext.Provider>
   );

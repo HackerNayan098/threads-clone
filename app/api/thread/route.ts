@@ -9,15 +9,13 @@ export async function POST(req: NextRequest) {
   try {
     const reqThread = await req.json();
     const { text, image, author, authorId } = reqThread;
-    const thread = new Thread({
+    const thread = await Thread.create({
       text,
       image,
       author,
       authorId,
     });
-    const threadId = await thread.save();
-    const userPosts = await User.findOne({ _id: authorId });
-    userPosts.threads.push(threadId._id);
+    await User.updateOne({ _id: authorId }, { $push: { threads: thread._id } });
 
     return NextResponse.json({
       message: "Thread Added Successfully",
@@ -30,7 +28,10 @@ export async function POST(req: NextRequest) {
 
 export async function GET() {
   try {
-    const posts = await Thread.find({}).populate("author");
+    const posts = await Thread.find({})
+      .populate("author")
+      .sort({ createdAt: -1 });
+
     return NextResponse.json({
       message: "User Posts",
       status: 200,

@@ -110,7 +110,7 @@ const Leftbar = () => {
             <span>Logout</span>
           </div>
         </nav>
-        <nav className="fixed bottom-0 left-0 w-full bg-white dark:bg-black p-2 border-t border-gray-300 lg:hidden flex justify-between">
+        <nav className="fixed bottom-0 z-50 left-0 w-full bg-white dark:bg-black p-2 border-t border-gray-300 lg:hidden flex justify-between">
           {itemlist.map((item) => {
             return (
               <Link

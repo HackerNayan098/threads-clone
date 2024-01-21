@@ -1,41 +1,45 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import { MdOutlinePhoto } from "react-icons/md";
 import { IoVideocam, IoVideocamOutline } from "react-icons/io5";
 import { GoPaperAirplane } from "react-icons/go";
 import axios from "axios";
 import { useGlobalContext } from "@/helper/context";
 import { BiSolidImageAdd } from "react-icons/bi";
+import { CldUploadWidget } from "next-cloudinary";
+import Image from "next/image";
 
 const page = () => {
   const { userData } = useGlobalContext();
+  const [imgUpload, setImgUpload] = useState("");
   const [mediaType, setMediaType] = useState("");
-  const [thread, setThread] = useState({
-    text: "",
-    image: "",
-  });
+  const [thread, setThread] = useState("");
 
-  const addPost = (e: any) => {
-    const { name, value } = e.target;
-    setThread({ ...thread, [name]: value });
-  };
+  // const addPost = (e: any) => {
+  //   const { name, value } = e.target;
+  //   setThread({ ...thread, [name]: value });
+  // };
 
   const savePost = async (e: any) => {
     e.preventDefault();
     try {
       await axios.post("/api/thread", {
-        ...thread,
+        text: thread,
+        image: imgUpload,
         author: userData._id,
         authorId: userData._id,
       });
-      setThread({
-        text: "",
-        image: "",
-      });
+      setThread("");
+      setImgUpload("");
     } catch (err: any) {
       console.log("post not added", err.message);
     }
   };
+
+  const handleUpload = useCallback((result: any) => {
+    setImgUpload(result.info.secure_url);
+  }, []);
+
   return (
     <div>
       <section className="p-4 bg-white rounded-2xl dark:bg-black">
@@ -44,18 +48,40 @@ const page = () => {
           rows={10}
           placeholder="What's in your mind ?"
           name="text"
-          value={thread.text}
-          onChange={(e) => addPost(e)}
+          value={thread}
+          onChange={(e) => setThread(e.target.value)}
         ></textarea>
         <div className="my-6">
           {mediaType === "image" && (
-            <label className="text-center  flex justify-center items-center rounded-2xl border-2 text-gray-400 border-dashed border-gray-400 h-60 w-60 cursor-pointer">
-              <input type="file" hidden />
-              <div>
-                <BiSolidImageAdd size={35} className="mx-auto" />
-                <h5 className="text-xl font-medium">Add Image</h5>
-              </div>
-            </label>
+            <CldUploadWidget
+              onUpload={handleUpload}
+              uploadPreset="nozftypf"
+              options={{ maxFiles: 1 }}
+            >
+              {({ open }) => {
+                return (
+                  <label
+                    onClick={() => open?.()}
+                    className="text-center relative flex justify-center items-center rounded-2xl border-2 text-gray-400 border-dashed border-gray-400 h-60 w-60 cursor-pointer"
+                  >
+                    {imgUpload && (
+                      <div className="w-full h-full absolute inset-0">
+                        <Image
+                          fill
+                          objectFit="cover"
+                          alt="upload"
+                          src={imgUpload}
+                        />
+                      </div>
+                    )}
+                    <div>
+                      <BiSolidImageAdd size={35} className="mx-auto" />
+                      <h5 className="text-xl font-medium">Add Image</h5>
+                    </div>
+                  </label>
+                );
+              }}
+            </CldUploadWidget>
           )}
           {mediaType === "video" && (
             <label className="text-center  flex justify-center items-center rounded-2xl border-2 text-gray-400 border-dashed border-gray-400 h-60 w-60 cursor-pointer">

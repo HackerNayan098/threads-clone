@@ -12,11 +12,7 @@ const Rightbar = () => {
   return (
     !authentic && (
       <>
-        <div
-          className={`lg:grid lg:grid-cols-1 gap-4 hidden h-full ${
-            suggest ? "suggest-open" : ""
-          }`}
-        >
+        <div className={`lg:grid lg:grid-cols-1 gap-4 hidden h-full `}>
           {/* <section>
             <h3 className="font-bold text-xl mb-2">Suggested Communitites</h3>
             <div className="bg-white dark:bg-black rounded-2xl px-4 py-2 overflow-auto h-80">
