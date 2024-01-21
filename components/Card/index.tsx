@@ -64,13 +64,18 @@ const index = ({ post }: any) => {
         </div>
       </section>
       <div className="flex gap-4">
-        {post.image && (
+        {post.postImage && (
           <div
             className={`h-72 lg:h-[480px] relative bg-gray-300 dark:bg-stone-900 my-6 rounded-2xl ${
               commentBox ? "w-full lg:w-1/2" : "w-full"
             }`}
           >
-            <Image fill objectFit="contain" alt={"postimg"} src={post.image} />
+            <Image
+              fill
+              objectFit="contain"
+              alt={"postimg"}
+              src={post.postImage}
+            />
           </div>
         )}
       </div>

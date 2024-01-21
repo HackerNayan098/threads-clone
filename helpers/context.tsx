@@ -20,6 +20,7 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
   const [loggedUser, setLoggedUser] = useState<any>(undefined);
   const [otherUsers, setOtherUsers] = useState<any>(undefined);
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   // Logged User Fetching
   useEffect(() => {
@@ -34,15 +35,18 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
   }, []);
 
   // Fetching All The Thread Posts
-  useEffect(() => {
-    axios.get("/api/threadpost").then((res: any) => {
-      setPosts(res.data.data);
-    });
-  }, []);
 
   return (
     <GlobalContext.Provider
-      value={{ authentic, loggedUser, otherUsers, posts }}
+      value={{
+        authentic,
+        loggedUser,
+        otherUsers,
+        posts,
+        setPosts,
+        loading,
+        setLoading,
+      }}
     >
       {children}
     </GlobalContext.Provider>

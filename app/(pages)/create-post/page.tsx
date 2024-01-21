@@ -8,9 +8,13 @@ import { BiSolidImageAdd } from "react-icons/bi";
 import { CldUploadWidget } from "next-cloudinary";
 import Image from "next/image";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const page = () => {
-  const { loggedUser } = useGlobalContext();
+  const { loggedUser, setPosts } = useGlobalContext();
+
+  const router = useRouter();
+
   const [mediaType, setMediaType] = useState("");
   const [threadText, setThreadText] = useState("");
   const [imgUpload, setImgUpload] = useState("");
@@ -23,11 +27,16 @@ const page = () => {
   const savePost = async (e: any) => {
     e.preventDefault();
     try {
-      await axios.post("/api/threadpost", {
-        postCaption: threadText,
-        postImage: imgUpload,
-        author: loggedUser._id,
-        authorId: loggedUser._id,
+      await axios
+        .post("/api/threadpost", {
+          postCaption: threadText,
+          postImage: imgUpload,
+          author: loggedUser._id,
+          authorId: loggedUser._id,
+        })
+        .finally(() => router.push("/"));
+      axios.get("/api/threadpost").then((res: any) => {
+        setPosts(res.data.data);
       });
       setThreadText("");
       setImgUpload("");

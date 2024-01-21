@@ -29,7 +29,9 @@ export async function POST(req: NextRequest) {
 
 export async function GET(req: NextRequest) {
   try {
-    const userPosts = await Thread.find({}).populate("author");
+    const userPosts = await Thread.find({})
+      .populate("author")
+      .sort({ createdAt: -1 });
     return NextResponse.json({
       data: userPosts,
       message: "User Posts",
