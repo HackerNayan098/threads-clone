@@ -38,7 +38,7 @@ const page = () => {
 
   return (
     <div className="w-full h-full flex items-center justify-center text-black ">
-      <div className="lg:w-96 w-full bg-white p-6 rounded-xl text-center">
+      <div className="lg:w-96 w-full bg-white dark:bg-black dark:text-white p-6 rounded-xl text-center">
         <h3 className="font-semibold tex-2xl">Login</h3>
         <form>
           <Input
@@ -67,18 +67,18 @@ const page = () => {
           />
           <Button
             btnTitle="Login"
-            disabled={!userInfo.password && !userInfo.email}
-            btnCss="w-full bg-blue-500 disabled:cursor-not-allowed disabled:opacity-50 text-white py-2.5 rounded"
+            disabled={!(userInfo.password && userInfo.email)}
+            btnCss="w-full bg-primary disabled:cursor-not-allowed disabled:opacity-50 text-white py-2.5 rounded"
             onClick={(e) => {
               handleSubmit(e);
             }}
           />
 
           <div className="bg-black h-[1px] w-full my-2"></div>
-          <div className="w-full bg-white border-2 p-[0.7rem] my-4 rounded-md outline-none text-black text-md shadow-[0px 1px 15px rgba(0, 0, 0, 0.2)] ">
+          <div className="w-full  border-2 p-[0.7rem] my-4 rounded-md outline-none dark:text-white text-black text-md shadow-[0px 1px 15px rgba(0, 0, 0, 0.2)] ">
             SignIn With Google
           </div>
-          <div className="w-full bg-white border-2 p-[0.7rem] my-4 rounded-md outline-none text-black text-md shadow-[0px 1px 15px rgba(0, 0, 0, 0.2)] ">
+          <div className="w-full  border-2 p-[0.7rem] my-4 rounded-md outline-none dark:text-white text-black text-md shadow-[0px 1px 15px rgba(0, 0, 0, 0.2)] ">
             SignIn With Github
           </div>
           <p className="mt-4">Don't have an account ?</p>

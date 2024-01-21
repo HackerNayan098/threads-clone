@@ -1,16 +1,20 @@
 "use client";
 import { IoSunny, IoMoon } from "react-icons/io5";
 import { AiOutlinePlusSquare } from "react-icons/ai";
+import { TbSocial } from "react-icons/tb";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 
 const index = () => {
   const { theme, setTheme } = useTheme();
+
   return (
     <div className="py-4 px-4 lg:px-12 bg-white dark:bg-black dark:text-white">
       <div className="flex items-center justify-between">
         <Link href={"/"}>
-          <div className="text-3xl font-bold">LOGO</div>
+          <div className="text-3xl font-bold text-primary">
+            <TbSocial size={50} />
+          </div>
         </Link>
         <div className="flex items-center gap-2">
           <Link
@@ -30,7 +34,7 @@ const index = () => {
               }
             }}
           >
-            {theme === "light" ? <IoMoon size={30} /> : <IoSunny size={30} />}
+            {theme === "dark" ? <IoSunny size={30} /> : <IoMoon size={30} />}
           </button>
         </div>
       </div>

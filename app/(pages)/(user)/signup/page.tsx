@@ -35,7 +35,7 @@ const page = () => {
 
   return (
     <div className="w-full h-full flex items-center justify-center text-black">
-      <div className="lg:w-96 w-full bg-white p-6 rounded-xl text-center">
+      <div className="lg:w-96 w-full dark:bg-black dark:text-white bg-white p-6 rounded-xl text-center">
         <h3 className="font-semibold text-2xl">Register</h3>
         <form>
           <Input
@@ -85,7 +85,8 @@ const page = () => {
           />
           <Button
             btnTitle={"Register"}
-            btnCss={" w-full bg-blue-500 text-white py-2.5 rounded"}
+            disabled={!(user.password && user.email)}
+            btnCss={" w-full bg-primary text-white py-2.5 rounded"}
             onClick={(e) => handleSubmit(e)}
           />
           <p className="mt-4">Do you have an account ?</p>
