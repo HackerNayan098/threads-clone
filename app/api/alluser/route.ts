@@ -10,7 +10,7 @@ export async function GET() {
   try {
     const session = await getServerSession(authOptions);
     if (session && session.user) {
-      const alluser = await User.find();
+      const alluser = await User.find({ email: { $ne: session.user.email } });
       return NextResponse.json(alluser);
     } else {
       return NextResponse.json("401 unauthorized");
