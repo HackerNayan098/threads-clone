@@ -109,7 +109,7 @@ const Card = ({ post }: any) => {
               />
             }
           />
-          {/* {comments?.length > 0 &&
+          {comments?.length > 0 &&
             comments
               ?.filter((c) => c?.threadId === post?._id)
               ?.map((c) => {
@@ -133,7 +133,7 @@ const Card = ({ post }: any) => {
                     </div>
                   </div>
                 );
-              })} */}
+              })}
         </section>
       )}
     </div>

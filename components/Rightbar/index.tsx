@@ -30,18 +30,17 @@ const Rightbar = () => {
     return <div className="py-6">Loading...</div>;
   }
 
-  const suggestedUser = otherUsers?.filter(
-    (u: any) => u._id !== loggedUser?._id
-  );
+  // const suggestedUser =
+  //   otherUsers && otherUsers?.filter((u: any) => u._id !== loggedUser?._id);
 
   return (
     !authentic && (
       <>
         <div className={`lg:grid lg:grid-cols-1 gap-4 hidden h-full `}>
           <section>
-            <h3 className="font-bold text-xl mb-2">Requests</h3>
+            <h3 className="font-bold text-xl mb-2">Suggestion</h3>
             <div className=" overflow-auto">
-              {suggestedUser?.map((res: any) => {
+              {/* {suggestedUser?.map((res: any) => {
                 return (
                   <div
                     key={res._id}
@@ -74,7 +73,7 @@ const Rightbar = () => {
                     </div>
                   </div>
                 );
-              })}
+              })} */}
             </div>
           </section>
         </div>
