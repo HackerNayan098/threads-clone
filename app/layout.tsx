@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Authroutes from "@/components/Authroutes";
+import Authroutes from "../components/Authroutes";
 
 export const metadata: Metadata = {
   title: "Thread",
