@@ -12,7 +12,7 @@ import axios from "axios";
 import Image from "next/image";
 import Input from "../Input";
 
-const index = ({ post }: any) => {
+const Card = ({ post }: any) => {
   const { loggedUser } = useGlobalContext();
   const [commentBox, setCommentBox] = useState(false);
   const [comment, setComment] = useState("");
@@ -112,7 +112,7 @@ const index = ({ post }: any) => {
             .filter((c) => c?.threadId === post._id)
             .map((c) => {
               return (
-                <div className="flex gap-2 items-center mb-2">
+                <div key={c._id} className="flex gap-2 items-center mb-2">
                   <div>
                     <Image
                       src={"/avatar.svg"}
@@ -135,4 +135,4 @@ const index = ({ post }: any) => {
   );
 };
 
-export default index;
+export default Card;

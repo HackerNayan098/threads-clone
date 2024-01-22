@@ -6,7 +6,7 @@ import axios from "axios";
 import Link from "next/link";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
-const Page = () => {
+const Signup = () => {
   const router = useRouter();
   const [seePass, setSeePass] = useState(false);
   const [user, setUser] = useState({
@@ -97,4 +97,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Signup;

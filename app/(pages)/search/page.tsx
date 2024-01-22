@@ -1,7 +1,7 @@
 import Input from "@/components/Input";
 import { IoSearch } from "react-icons/io5";
 
-const Page = () => {
+const Search = () => {
   return (
     <div className="lg:p-8 p-4">
       <h1 className="font-bold text-3xl">Search</h1>
@@ -22,4 +22,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default Search;

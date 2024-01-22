@@ -26,7 +26,7 @@ export default function Home() {
       <div className="grid grid-cols-1 gap-4 w-full">
         {posts.length > 0 &&
           posts.map((p: any) => {
-            return <Card post={p} />;
+            return <Card key={p._id} post={p} />;
           })}
       </div>
     </div>

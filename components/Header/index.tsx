@@ -5,7 +5,7 @@ import { TbSocial } from "react-icons/tb";
 import { useTheme } from "next-themes";
 import Link from "next/link";
 
-const index = () => {
+const Header = () => {
   const { theme, setTheme } = useTheme();
 
   return (
@@ -42,4 +42,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Header;

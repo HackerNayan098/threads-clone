@@ -53,7 +53,7 @@ const navList = [
     redirect: "/user-profile",
   },
 ];
-const index = () => {
+const Leftbar = () => {
   const pathname = usePathname();
   const { authentic, loggedUser } = useGlobalContext();
   const [openNav, setOpenNav] = useState(false);
@@ -129,4 +129,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Leftbar;

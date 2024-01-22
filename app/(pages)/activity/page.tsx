@@ -1,7 +1,7 @@
 import React from "react";
 
-const Page = () => {
+const Activity = () => {
   return <div>Activity page</div>;
 };
 
-export default Page;
+export default Activity;

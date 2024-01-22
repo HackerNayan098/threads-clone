@@ -5,7 +5,7 @@ interface btnProps {
   disabled?: boolean;
 }
 
-const index = ({ btnTitle, btnCss, onClick, disabled }: btnProps) => {
+const Button = ({ btnTitle, btnCss, onClick, disabled }: btnProps) => {
   return (
     <button disabled={disabled} onClick={onClick} className={`${btnCss}`}>
       {btnTitle}
@@ -13,4 +13,4 @@ const index = ({ btnTitle, btnCss, onClick, disabled }: btnProps) => {
   );
 };
 
-export default index;
+export default Button;

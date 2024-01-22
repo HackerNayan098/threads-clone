@@ -3,7 +3,7 @@ import { useState } from "react";
 import { useGlobalContext } from "@/helpers/context";
 import Image from "next/image";
 
-const index = () => {
+const Rightbar = () => {
   const { authentic, loggedUser, otherUsers } = useGlobalContext();
 
   const suggestedUser = otherUsers?.filter(
@@ -59,4 +59,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default Rightbar;

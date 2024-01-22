@@ -81,7 +81,7 @@ const Signin = () => {
           <div className="w-full  border-2 p-[0.7rem] my-4 rounded-md outline-none dark:text-white text-black text-md shadow-[0px 1px 15px rgba(0, 0, 0, 0.2)] ">
             SignIn With Github
           </div>
-          <p className="mt-4">Don't have an account ?</p>
+          <p className="mt-4">Don&#39;t have an account ?</p>
           <Link href={"/signup"}>Register Here</Link>
         </form>
       </div>

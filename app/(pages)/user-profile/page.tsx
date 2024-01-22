@@ -5,7 +5,7 @@ import { FaPen } from "react-icons/fa6";
 import { PiSmileySad } from "react-icons/pi";
 import Image from "next/image";
 
-const Page = () => {
+const UserProfile = () => {
   const { loggedUser, posts } = useGlobalContext();
   const [activeTab, setActiveTab] = useState("Thread");
   const tabs = ["Thread", "Replies", "Tagged"];
@@ -71,7 +71,10 @@ const Page = () => {
               <div className="grid gap-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                 {userPosts.map((p: any) => {
                   return (
-                    <div className="w-full bg-gray-300 dark:bg-stone-900 rounded-2xl h-72"></div>
+                    <div
+                      key={p._id}
+                      className="w-full bg-gray-300 dark:bg-stone-900 rounded-2xl h-72"
+                    ></div>
                   );
                 })}
               </div>
@@ -97,4 +100,4 @@ const Page = () => {
   );
 };
 
-export default Page;
+export default UserProfile;

@@ -8,7 +8,7 @@ interface inputProps {
   elemClass?: string;
 }
 
-const index = ({
+const Input = ({
   type,
   placeholder,
   name,
@@ -32,4 +32,4 @@ const index = ({
   );
 };
 
-export default index;
+export default Input;

@@ -6,7 +6,7 @@ import Header from "../Header";
 import Leftbar from "../Leftbar";
 import Rightbar from "../Rightbar";
 
-const index = ({ children }: { children: React.ReactNode }) => {
+const Authroutes = ({ children }: { children: React.ReactNode }) => {
   return (
     <SessionProvider>
       <ThemeProvider
@@ -33,4 +33,4 @@ const index = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default index;
+export default Authroutes;
