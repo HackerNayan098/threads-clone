@@ -40,7 +40,7 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
   const pathname = usePathname();
   const authentic = pathname && ["/signin", "/signup"].includes(pathname);
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
-  const [otherUsers, setOtherUsers] = useState<User[] | null>(null);
+  const [otherUsers, setOtherUsers] = useState<User[] | null>([]);
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
