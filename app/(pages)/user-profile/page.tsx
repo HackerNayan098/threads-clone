@@ -10,9 +10,7 @@ const UserProfile = () => {
   const [activeTab, setActiveTab] = useState("Thread");
   const tabs = ["Thread", "Replies", "Tagged"];
 
-  const userPosts = posts.filter(
-    (up: any) => loggedUser?._id === up.author._id
-  );
+  const userPosts = posts;
 
   return (
     <div>
