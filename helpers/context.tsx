@@ -17,7 +17,7 @@ interface ContextProps {
 interface GCProps {
   authentic: boolean | any;
   loggedUser: User | null;
-  otherUsers: User[] | null;
+  otherUsers: User[];
   setOtherUsers: SetStateAction<Dispatch<User[]>>;
   posts: Post[];
   setPosts: SetStateAction<Dispatch<Post[]>>;
@@ -40,7 +40,7 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
   const pathname = usePathname();
   const authentic = pathname && ["/signin", "/signup"].includes(pathname);
   const [loggedUser, setLoggedUser] = useState<User | null>(null);
-  const [otherUsers, setOtherUsers] = useState<User[] | null>([]);
+  const [otherUsers, setOtherUsers] = useState<User[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -48,6 +48,12 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
   useEffect(() => {
     axios.get("/api/user").then((res: any) => {
       setLoggedUser(res.data.user);
+    });
+  }, []);
+
+  useEffect(() => {
+    axios.get("/api/alluser").then((res: any) => {
+      setOtherUsers(res.data);
     });
   }, []);
 
