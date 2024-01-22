@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Authroutes from "../components/Authroutes";
+import Wrapper from "@/components/Wrapper";
 
 export const metadata: Metadata = {
   title: "Thread",
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`w-full h-screen lg:overflow-hidden`}>
-        <Authroutes>{children}</Authroutes>
+        <Wrapper>{children}</Wrapper>
       </body>
     </html>
   );
