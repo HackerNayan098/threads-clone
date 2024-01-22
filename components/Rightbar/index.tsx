@@ -1,10 +1,34 @@
 "use client";
-import { useState } from "react";
+import { useEffect } from "react";
 import { useGlobalContext } from "@/helpers/context";
 import Image from "next/image";
+import axios from "axios";
 
 const Rightbar = () => {
-  const { authentic, loggedUser, otherUsers } = useGlobalContext();
+  const {
+    authentic,
+    loggedUser,
+    otherUsers,
+    setOtherUsers,
+    loading,
+    setLoading,
+  } = useGlobalContext();
+
+  useEffect(() => {
+    setLoading(true);
+    axios
+      .get("/api/user/alluser")
+      .then((res: any) => {
+        setOtherUsers(res.data);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
+  if (loading) {
+    return <div className="py-6">Loading...</div>;
+  }
 
   const suggestedUser = otherUsers?.filter(
     (u: any) => u._id !== loggedUser?._id

@@ -18,6 +18,7 @@ interface GCProps {
   authentic: boolean | any;
   loggedUser: User | undefined;
   otherUsers: User[] | undefined;
+  setOtherUsers: SetStateAction<Dispatch<User[]>>;
   posts: Post[];
   setPosts: SetStateAction<Dispatch<Post[]>>;
   loading: boolean;
@@ -28,6 +29,7 @@ export const GlobalContext = createContext<GCProps>({
   authentic: false,
   loggedUser: undefined,
   otherUsers: [],
+  setOtherUsers: () => {},
   posts: [],
   setPosts: () => {},
   loading: false,
@@ -47,14 +49,7 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
     axios.get("/api/user").then((res: any) => {
       setLoggedUser(res.data.user);
     });
-
-    // All user fetching
-    axios.get("/api/user/alluser").then((res: any) => {
-      setOtherUsers(res.data);
-    });
   }, []);
-
-  // Fetching All The Thread Posts
 
   return (
     <GlobalContext.Provider
@@ -66,6 +61,7 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
         setPosts,
         loading,
         setLoading,
+        setOtherUsers,
       }}
     >
       {children}
