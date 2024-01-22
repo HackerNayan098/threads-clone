@@ -110,8 +110,8 @@ const Card = ({ post }: any) => {
           />
           {comments.length > 0 &&
             comments
-              .filter((c) => c?.threadId === post._id)
-              .map((c) => {
+              ?.filter((c) => c?.threadId === post._id)
+              ?.map((c) => {
                 return (
                   <div key={c._id} className="flex gap-2 items-center mb-2">
                     <div>
