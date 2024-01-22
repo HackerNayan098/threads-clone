@@ -5,7 +5,7 @@ import { authOptions } from "../../../pages/api/auth/[...nextauth]";
 import dbConnect from "@/dbconfig";
 
 export async function GET() {
-  dbConnect();
+  await dbConnect();
 
   try {
     const session = await getServerSession(authOptions);

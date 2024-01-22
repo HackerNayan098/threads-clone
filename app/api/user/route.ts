@@ -5,7 +5,7 @@ import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  dbConnect();
+  await dbConnect();
   const session = await getServerSession(authOptions);
   if (session && session.user) {
     const { email } = session.user;

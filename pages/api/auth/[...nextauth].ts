@@ -32,7 +32,7 @@ export const authOptions: NextAuthOptions = {
           throw new Error("Invalid credentials");
         }
 
-        dbConnect();
+        await dbConnect();
 
         const auth = await User.findOne({ email });
 

@@ -4,7 +4,7 @@ import bcryptjs from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
-  dbConnect();
+  await dbConnect();
   try {
     const reqBody = await req.json();
     const { name, phone, email, username, password } = reqBody;

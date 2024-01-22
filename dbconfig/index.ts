@@ -1,21 +1,21 @@
 import mongoose from "mongoose";
 
-const dbConnect = () => {
+const dbConnect = async () => {
   try {
-    mongoose.connect(process.env.DB_URL!);
-    const connection = mongoose.connection;
+    await mongoose.connect(process.env.DB_URL!);
+    console.log("Database connected successfully !");
+    // const connection = mongoose.connection;
 
-    connection.on("connected", () => {
-      console.log("Database connected successfully !");
-    });
+    // connection.on("connected", () => {
+    //   console.log("Database connected successfully !");
+    // });
 
-    connection.on("error", (err) => {
-      console.log("MongoDB Connection error" + err);
-      process.exit();
-    });
+    // connection.on("error", (err) => {
+    //   console.log("MongoDB Connection error" + err);
+    //   process.exit();
+    // });
   } catch (err) {
-    console.log("Something goes wrong!");
-    console.log(err);
+    return Promise.reject(err);
   }
 };
 
