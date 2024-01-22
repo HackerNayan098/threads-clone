@@ -17,7 +17,7 @@ const Rightbar = () => {
   useEffect(() => {
     setLoading(true);
     axios
-      .get("/api/user/alluser")
+      .get("/api/alluser")
       .then((res: any) => {
         setOtherUsers(res.data);
       })
