@@ -33,7 +33,7 @@ const ThreadSchema = new mongoose.Schema(
     authorId: {
       type: String,
     },
-    //   captions : [{type: mongoose.Schema.Types.ObjectId, ref: "comments"}]
+    //   comments : [{type: mongoose.Schema.Types.ObjectId, ref: "comments"}]
   },
   { timestamps: true }
 );

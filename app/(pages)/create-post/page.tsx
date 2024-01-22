@@ -31,8 +31,8 @@ const CreatePost = () => {
         .post("/api/threadpost", {
           postCaption: threadText,
           postImage: imgUpload,
-          author: loggedUser._id,
-          authorId: loggedUser._id,
+          author: loggedUser?._id,
+          authorId: loggedUser?._id,
         })
         .finally(() => router.push("/"));
       axios.get("/api/threadpost").then((res: any) => {

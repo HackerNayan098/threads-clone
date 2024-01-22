@@ -28,8 +28,8 @@ const Card = ({ post }: any) => {
     try {
       await axios.post("/api/comments", {
         text: comment,
-        author: loggedUser._id,
-        authorId: loggedUser._id,
+        author: loggedUser?._id,
+        authorId: loggedUser?._id,
         thread: post._id,
         threadId: post._id,
       });

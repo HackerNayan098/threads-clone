@@ -21,7 +21,7 @@ interface GCProps {
   posts: Post[];
   setPosts: SetStateAction<Dispatch<Post[]>>;
   loading: boolean;
-  setLoading: SetStateAction<Dispatch<boolean>>;
+  setLoading: (val: boolean) => void;
 }
 
 export const GlobalContext = createContext<GCProps>({
@@ -40,7 +40,7 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
   const [loggedUser, setLoggedUser] = useState<User | undefined>(undefined);
   const [otherUsers, setOtherUsers] = useState<User[] | undefined>(undefined);
   const [posts, setPosts] = useState<Post[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // Logged User Fetching
   useEffect(() => {
