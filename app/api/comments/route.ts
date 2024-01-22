@@ -28,6 +28,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET() {
+  dbConnect();
   const Comments = await Comment.find({})
     .populate("author")
     .sort({ createdAt: -1 });
