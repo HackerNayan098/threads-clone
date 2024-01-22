@@ -6,9 +6,9 @@ dbConnect();
 
 export async function GET() {
   const allUsers = await User.find();
-  if (allUsers) {
+  try {
     return NextResponse.json(allUsers);
-  } else {
+  } catch (err: any) {
     return NextResponse.json("500 Internal Server Issue");
   }
 }
