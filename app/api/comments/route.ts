@@ -1,9 +1,9 @@
 import { Thread, Comment } from "@/models";
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/dbconfig";
-dbConnect();
 
 export async function POST(req: NextRequest) {
+  dbConnect();
   try {
     const { commentText, author, authorId, thread, threadId } =
       await req.json();

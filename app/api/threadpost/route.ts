@@ -2,9 +2,8 @@ import { User, Thread } from "@/models";
 import { NextRequest, NextResponse } from "next/server";
 import dbConnect from "@/dbconfig";
 
-dbConnect();
-
 export async function POST(req: NextRequest) {
+  dbConnect();
   try {
     const { postCaption, postImage, author, authorId } = await req.json();
     const threadPost = await Thread.create({
@@ -28,6 +27,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
+  dbConnect();
   try {
     const userPosts = await Thread.find({})
       .populate("author")
