@@ -6,7 +6,9 @@ import Image from "next/image";
 const Rightbar = () => {
   const { authentic, loggedUser, otherUsers } = useGlobalContext();
 
-  const suggestedUser = otherUsers;
+  const suggestedUser = otherUsers?.filter(
+    (u: any) => u._id !== loggedUser?._id
+  );
 
   return (
     !authentic && (
