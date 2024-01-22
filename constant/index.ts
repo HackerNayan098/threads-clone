@@ -15,6 +15,7 @@ export interface Post {
 }
 
 export interface Comment {
+  _id: String;
   commentText: String;
   author: User;
   authorId: String;

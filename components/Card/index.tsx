@@ -11,12 +11,13 @@ import {
 import axios from "axios";
 import Image from "next/image";
 import Input from "../Input";
+import { Comment } from "@/constant";
 
 const Card = ({ post }: any) => {
   const { loggedUser } = useGlobalContext();
   const [commentBox, setCommentBox] = useState(false);
   const [comment, setComment] = useState("");
-  const [comments, setComments] = useState<any[]>([]);
+  const [comments, setComments] = useState<Comment[]>([]);
 
   // const addComment = (e: any) => {
   //   const { name, value } = e.target;
@@ -108,12 +109,15 @@ const Card = ({ post }: any) => {
               />
             }
           />
-          {comments.length > 0 &&
+          {comments?.length > 0 &&
             comments
-              ?.filter((c) => c?.threadId === post._id)
+              ?.filter((c) => c?.threadId === post?._id)
               ?.map((c) => {
                 return (
-                  <div key={c._id} className="flex gap-2 items-center mb-2">
+                  <div
+                    key={`${c._id}`}
+                    className="flex gap-2 items-center mb-2"
+                  >
                     <div>
                       <Image
                         src={"/avatar.svg"}
@@ -125,7 +129,7 @@ const Card = ({ post }: any) => {
                     </div>
                     <div className="flex gap-2">
                       <h4 className="font-bold">{c.author.name}</h4>
-                      <p className="text-gray-500 text-lg">{c.text}</p>
+                      <p className="text-gray-500 text-lg">{c.commentText}</p>
                     </div>
                   </div>
                 );
