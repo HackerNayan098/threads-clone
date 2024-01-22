@@ -9,6 +9,6 @@ export async function GET() {
     const allUsers = await User.find();
     return NextResponse.json(allUsers);
   } catch (err: any) {
-    return NextResponse.json("500 Internal Server Issue");
+    return NextResponse.json(err);
   }
 }
