@@ -22,7 +22,9 @@ const UserProfile = () => {
             <div className="relative h-14 w-14">
               <Image
                 src={`${
-                  loggedUser.profileImg ? loggedUser.profileImg : "/avatar.svg"
+                  loggedUser?.profileImg
+                    ? loggedUser?.profileImg
+                    : "/avatar.svg"
                 }`}
                 alt="Avatar"
                 className="rounded-full"

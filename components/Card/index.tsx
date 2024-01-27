@@ -54,7 +54,9 @@ const Card = ({ post }: any) => {
           <div className="h-12 w-12 relative">
             <Image
               src={`${
-                post.author.profileImg ? post.author.profileImg : "/avatar.svg"
+                post?.author?.profileImg
+                  ? post?.author?.profileImg
+                  : "/avatar.svg"
               }`}
               alt="Avatar"
               className="rounded-full"
@@ -125,8 +127,8 @@ const Card = ({ post }: any) => {
                     <div>
                       <Image
                         src={`${
-                          c.author.profileImg
-                            ? c.author.profileImg
+                          c?.author?.profileImg
+                            ? c?.author?.profileImg
                             : "/avatar.svg"
                         }`}
                         alt="Avatar"
