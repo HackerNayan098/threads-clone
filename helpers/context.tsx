@@ -29,7 +29,8 @@ export const GlobalContext = createContext<GCProps>({
   authentic: false,
   loggedUser: {
     email: "user@user.com",
-    username: "unknown user",
+    username: "unknown_user",
+    profileImg: "/avatar.svg",
   },
   otherUsers: [],
   setOtherUsers: () => {},
@@ -44,7 +45,8 @@ export const GlobalApiProvider = ({ children }: ContextProps) => {
   const authentic = pathname && ["/signin", "/signup"].includes(pathname);
   const [loggedUser, setLoggedUser] = useState<User>({
     email: "user@user.com",
-    username: "unknown user",
+    username: "unknown_user",
+    profileImg: "/avatar.svg",
   });
   const [otherUsers, setOtherUsers] = useState<User[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
