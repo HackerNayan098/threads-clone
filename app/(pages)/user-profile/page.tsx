@@ -19,15 +19,19 @@ const UserProfile = () => {
       <section>
         <div className="flex items-center justify-between py-4 lg:p-4">
           <div className="flex items-center justify-center gap-4">
-            <Image
-              src={"/avatar.svg"}
-              alt="Avatar"
-              className="rounded-full"
-              height={56}
-              width={56}
-            />
+            <div className="relative h-14 w-14">
+              <Image
+                src={`${
+                  loggedUser.profileImg ? loggedUser.profileImg : "/avatar.svg"
+                }`}
+                alt="Avatar"
+                className="rounded-full"
+                fill
+                objectFit="cover"
+              />
+            </div>
             <div>
-              <h3 className="font-bold text-xl">{loggedUser?.name}</h3>
+              <h3 className="font-bold text-xl">{loggedUser.fullname}</h3>
               <h5 className="text-gray-500 text-lg font-medium">
                 @{loggedUser?.username}
               </h5>

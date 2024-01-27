@@ -32,7 +32,7 @@ const Rightbar = () => {
                           />
                         </div>
                         <div>
-                          <h4 className="font-bold text-lg">{res.name}</h4>
+                          <h4 className="font-bold text-lg">{res.fullname}</h4>
                           <p className="text-gray-500 text-lg">
                             5 mutual friends
                           </p>

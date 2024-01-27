@@ -7,8 +7,10 @@ import Button from "@/components/Button";
 import Input from "@/components/Input";
 import Image from "next/image";
 import axios from "axios";
+import { useGlobalContext } from "@/helpers/context";
 
 const UpdateProfile = () => {
+  const { loggedUser } = useGlobalContext();
   const router = useRouter();
   const [profilePic, setProfilePic] = useState("");
   const [updateProfileName, setUpdateProfileName] = useState("");
@@ -18,8 +20,8 @@ const UpdateProfile = () => {
     e.preventDefault();
     try {
       await axios
-        .post("/api/updateProfile", {
-          name: updateProfileName,
+        .post(`/api/user/${loggedUser?._id}`, {
+          fullname: updateProfileName,
           profileBio: updateProfileBio,
           profileImg: profilePic,
         })
@@ -74,7 +76,7 @@ const UpdateProfile = () => {
           <Input
             type="text"
             placeholder="change your fullname"
-            name="name"
+            name="fullname"
             value={updateProfileName}
             onChange={(e) => setUpdateProfileName(e.target.value)}
           />

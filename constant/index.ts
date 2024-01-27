@@ -1,10 +1,12 @@
 export interface User {
-  _id: String;
-  name: String;
+  _id?: String;
+  fullname?: String;
+  profileImg?: String;
+  profileBio?: String;
   email: String;
   username: String;
-  phone: String;
-  thread: Post[];
+  phone?: String;
+  thread?: Post[];
 }
 
 export interface Post {

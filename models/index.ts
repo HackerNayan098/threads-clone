@@ -2,7 +2,9 @@ import mongoose from "mongoose";
 
 // User Model Schema
 const UserSchema = new mongoose.Schema({
-  name: { type: String, require: [true, "please provide a name"] },
+  fullname: { type: String, require: [true, "please provide a name"] },
+  profileImg: { type: String },
+  profileBio: { type: String },
   phone: { type: String, require: [false, "please provide a phone number"] },
   email: {
     type: String,

@@ -16,7 +16,7 @@ interface ContextProps {
 }
 interface GCProps {
   authentic: boolean | any;
-  loggedUser: User | null;
+  loggedUser: User;
   otherUsers: User[];
   setOtherUsers: SetStateAction<Dispatch<User[]>>;
   posts: Post[];
@@ -27,7 +27,10 @@ interface GCProps {
 
 export const GlobalContext = createContext<GCProps>({
   authentic: false,
-  loggedUser: null,
+  loggedUser: {
+    email: "user@user.com",
+    username: "unknown user",
+  },
   otherUsers: [],
   setOtherUsers: () => {},
   posts: [],
@@ -39,7 +42,10 @@ export const GlobalContext = createContext<GCProps>({
 export const GlobalApiProvider = ({ children }: ContextProps) => {
   const pathname = usePathname();
   const authentic = pathname && ["/signin", "/signup"].includes(pathname);
-  const [loggedUser, setLoggedUser] = useState<User | null>(null);
+  const [loggedUser, setLoggedUser] = useState<User>({
+    email: "user@user.com",
+    username: "unknown user",
+  });
   const [otherUsers, setOtherUsers] = useState<User[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState<boolean>(false);

@@ -63,17 +63,19 @@ const Leftbar = () => {
       <>
         <nav className={`h-full lg:flex flex-col items-center hidden`}>
           <div className="p-4 w-full mx-auto rounded-2xl bg-white dark:bg-black flex gap-2 items-center mb-6">
-            <div>
+            <div className="relative h-14 w-14">
               <Image
-                src={"/avatar.svg"}
+                src={`${
+                  loggedUser.profileImg ? loggedUser.profileImg : "/avatar.svg"
+                }`}
                 alt="Avatar"
+                objectFit="cover"
                 className="rounded-full"
-                height={56}
-                width={56}
+                fill
               />
             </div>
             <div>
-              <h4 className="font-bold text-lg">{loggedUser?.name}</h4>
+              <h4 className="font-bold text-lg">{loggedUser?.fullname}</h4>
               <p className="text-gray-500 text-lg">@{loggedUser?.username}</p>
             </div>
           </div>
