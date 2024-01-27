@@ -51,13 +51,17 @@ const Card = ({ post }: any) => {
     <div className="mx-auto w-full lg:p-6 p-4 bg-white dark:bg-black rounded-2xl">
       <section className="flex items-start gap-4">
         <div>
-          <Image
-            src={"/avatar.svg"}
-            alt="Avatar"
-            className="rounded-full"
-            height={48}
-            width={48}
-          />
+          <div className="h-12 w-12 relative">
+            <Image
+              src={`${
+                post.author.profileImg ? post.author.profileImg : "/avatar.svg"
+              }`}
+              alt="Avatar"
+              className="rounded-full"
+              fill
+              objectFit="cover"
+            />
+          </div>
         </div>
         <div>
           <div className="font-bold">{post.author.username}</div>
@@ -120,7 +124,11 @@ const Card = ({ post }: any) => {
                   >
                     <div>
                       <Image
-                        src={"/avatar.svg"}
+                        src={`${
+                          c.author.profileImg
+                            ? c.author.profileImg
+                            : "/avatar.svg"
+                        }`}
                         alt="Avatar"
                         className="rounded-full"
                         height={25}
@@ -128,7 +136,7 @@ const Card = ({ post }: any) => {
                       />
                     </div>
                     <div className="flex gap-2">
-                      <h4 className="font-bold">{c.author.name}</h4>
+                      <h4 className="font-bold">{c.author.fullname}</h4>
                       <p className="text-gray-500 text-lg">{c.commentText}</p>
                     </div>
                   </div>
