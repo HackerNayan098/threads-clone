@@ -1,6 +1,7 @@
 interface inputProps {
   type: string;
   placeholder: string;
+  inputClass?: string;
   name: string;
   value?: string;
   onChange?: (e: any) => void;
@@ -11,6 +12,7 @@ interface inputProps {
 const Input = ({
   type,
   placeholder,
+  inputClass,
   name,
   value,
   onChange,
@@ -18,7 +20,9 @@ const Input = ({
   elemClass,
 }: inputProps) => {
   return (
-    <div className="w-full relative flex items-center justify-between dark:text-white text-black border-2 p-[0.7rem] my-4 rounded-md  text-md shadow-[0px 1px 15px rgba(0, 0, 0, 0.2)]">
+    <div
+      className={`w-full relative flex items-center justify-between dark:text-white text-black border-2 p-[0.7rem] my-4 rounded-md  text-md shadow-[0px 1px 15px rgba(0, 0, 0, 0.2)] ${inputClass}`}
+    >
       <input
         type={type}
         placeholder={placeholder}
